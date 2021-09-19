@@ -41,7 +41,7 @@ struct VocaListView: View {
                 ,
                 trailing:
                     HStack {
-                        NavigationLink(destination: Text("단어 추가")) {
+                        NavigationLink(destination: AddVocaView()) {
                             Text("단어 추가")
                         }
                     })
