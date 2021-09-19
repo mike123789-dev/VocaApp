@@ -26,21 +26,23 @@ struct VocaQuizListView: View {
                                     }
                                 }
                             }
-                            .padding(.all, 10)
+                            .padding(20)
                         }
                         .frame(height: 200)
                         .tabViewStyle(PageTabViewStyle())
-
-                    }
-                    VStack(spacing: 16) {
+                        .padding(.bottom)                    }
+                    VStack(spacing: 10) {
                         Text("폴더")
-                        ForEach(items, id: \.self) { item in
-                            NavigationLink(destination: QuizView()) {
-                                CardView {
-                                    VocaQuizItemView(title: item,
-                                                     count: 34)
-                                        .padding()
+                        VStack(spacing: 20) {
+                            ForEach(items, id: \.self) { item in
+                                NavigationLink(destination: QuizView()) {
+                                    CardView {
+                                        VocaQuizItemView(title: item,
+                                                         count: 34)
+                                            .padding()
+                                    }
                                 }
+                                .padding(10)
                             }
                         }
                     }
