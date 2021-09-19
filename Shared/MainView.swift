@@ -14,7 +14,7 @@ struct MainView: View {
                 .tabItem {
                     Label("단어", systemImage: "list.dash")
                 }
-            VocaQuizView()
+            VocaQuizListView()
                 .tabItem {
                     Label("시험", systemImage: "square.stack.fill")
                 }

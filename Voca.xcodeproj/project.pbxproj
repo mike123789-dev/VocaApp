@@ -17,14 +17,18 @@
 		51554D6126F37DAF0030BB2D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51554D3526F37DAF0030BB2D /* Assets.xcassets */; };
 		51554D7126F380BA0030BB2D /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51554D7026F380BA0030BB2D /* MainView.swift */; };
 		51554D7226F380BA0030BB2D /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51554D7026F380BA0030BB2D /* MainView.swift */; };
-		51554D7426F381B10030BB2D /* VocaQuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51554D7326F381B10030BB2D /* VocaQuizView.swift */; };
-		51554D7526F381B10030BB2D /* VocaQuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51554D7326F381B10030BB2D /* VocaQuizView.swift */; };
+		51554D7426F381B10030BB2D /* VocaQuizListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51554D7326F381B10030BB2D /* VocaQuizListView.swift */; };
+		51554D7526F381B10030BB2D /* VocaQuizListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51554D7326F381B10030BB2D /* VocaQuizListView.swift */; };
 		CEF80DEC26F762A7004F259C /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF80DEB26F762A7004F259C /* CardView.swift */; };
 		CEF80DED26F762A7004F259C /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF80DEB26F762A7004F259C /* CardView.swift */; };
 		CEF80DEF26F764B2004F259C /* ContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF80DEE26F764B2004F259C /* ContainerView.swift */; };
 		CEF80DF026F764B2004F259C /* ContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF80DEE26F764B2004F259C /* ContainerView.swift */; };
 		CEF80DF226F764E1004F259C /* AddVocaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF80DF126F764E1004F259C /* AddVocaView.swift */; };
 		CEF80DF326F764E1004F259C /* AddVocaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF80DF126F764E1004F259C /* AddVocaView.swift */; };
+		CEF80DF526F76C7C004F259C /* QuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF80DF426F76C7C004F259C /* QuizView.swift */; };
+		CEF80DF626F76C7C004F259C /* QuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF80DF426F76C7C004F259C /* QuizView.swift */; };
+		CEF80DFA26F76CCF004F259C /* VocaQuizItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF80DF926F76CCF004F259C /* VocaQuizItemView.swift */; };
+		CEF80DFB26F76CCF004F259C /* VocaQuizItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF80DF926F76CCF004F259C /* VocaQuizItemView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,10 +64,12 @@
 		51554D5926F37DAF0030BB2D /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		51554D5B26F37DAF0030BB2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		51554D7026F380BA0030BB2D /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		51554D7326F381B10030BB2D /* VocaQuizView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocaQuizView.swift; sourceTree = "<group>"; };
+		51554D7326F381B10030BB2D /* VocaQuizListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocaQuizListView.swift; sourceTree = "<group>"; };
 		CEF80DEB26F762A7004F259C /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		CEF80DEE26F764B2004F259C /* ContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerView.swift; sourceTree = "<group>"; };
 		CEF80DF126F764E1004F259C /* AddVocaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddVocaView.swift; sourceTree = "<group>"; };
+		CEF80DF426F76C7C004F259C /* QuizView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizView.swift; sourceTree = "<group>"; };
+		CEF80DF926F76CCF004F259C /* VocaQuizItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocaQuizItemView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,9 +121,8 @@
 			children = (
 				51554D3326F37DAD0030BB2D /* VocaApp.swift */,
 				51554D7026F380BA0030BB2D /* MainView.swift */,
-				51554D3426F37DAD0030BB2D /* VocaListView.swift */,
-				CEF80DF126F764E1004F259C /* AddVocaView.swift */,
-				51554D7326F381B10030BB2D /* VocaQuizView.swift */,
+				CEF80DF726F76CAA004F259C /* VocaList */,
+				CEF80DF826F76CB2004F259C /* VocaQuiz */,
 				CEF80DEA26F7629C004F259C /* SubViews */,
 				51554D3526F37DAF0030BB2D /* Assets.xcassets */,
 			);
@@ -177,6 +182,25 @@
 				CEF80DEE26F764B2004F259C /* ContainerView.swift */,
 			);
 			path = SubViews;
+			sourceTree = "<group>";
+		};
+		CEF80DF726F76CAA004F259C /* VocaList */ = {
+			isa = PBXGroup;
+			children = (
+				51554D3426F37DAD0030BB2D /* VocaListView.swift */,
+				CEF80DF126F764E1004F259C /* AddVocaView.swift */,
+			);
+			path = VocaList;
+			sourceTree = "<group>";
+		};
+		CEF80DF826F76CB2004F259C /* VocaQuiz */ = {
+			isa = PBXGroup;
+			children = (
+				51554D7326F381B10030BB2D /* VocaQuizListView.swift */,
+				CEF80DF926F76CCF004F259C /* VocaQuizItemView.swift */,
+				CEF80DF426F76C7C004F259C /* QuizView.swift */,
+			);
+			path = VocaQuiz;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -340,9 +364,11 @@
 				51554D7126F380BA0030BB2D /* MainView.swift in Sources */,
 				CEF80DEF26F764B2004F259C /* ContainerView.swift in Sources */,
 				CEF80DF226F764E1004F259C /* AddVocaView.swift in Sources */,
-				51554D7426F381B10030BB2D /* VocaQuizView.swift in Sources */,
+				51554D7426F381B10030BB2D /* VocaQuizListView.swift in Sources */,
+				CEF80DF526F76C7C004F259C /* QuizView.swift in Sources */,
 				51554D5C26F37DAF0030BB2D /* VocaApp.swift in Sources */,
 				CEF80DEC26F762A7004F259C /* CardView.swift in Sources */,
+				CEF80DFA26F76CCF004F259C /* VocaQuizItemView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -354,9 +380,11 @@
 				51554D7226F380BA0030BB2D /* MainView.swift in Sources */,
 				CEF80DF026F764B2004F259C /* ContainerView.swift in Sources */,
 				CEF80DF326F764E1004F259C /* AddVocaView.swift in Sources */,
-				51554D7526F381B10030BB2D /* VocaQuizView.swift in Sources */,
+				51554D7526F381B10030BB2D /* VocaQuizListView.swift in Sources */,
+				CEF80DF626F76C7C004F259C /* QuizView.swift in Sources */,
 				51554D5D26F37DAF0030BB2D /* VocaApp.swift in Sources */,
 				CEF80DED26F762A7004F259C /* CardView.swift in Sources */,
+				CEF80DFB26F76CCF004F259C /* VocaQuizItemView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
