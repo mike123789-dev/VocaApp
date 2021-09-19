@@ -16,9 +16,23 @@ struct VocaQuizListView: View {
                 VStack {
                     VStack {
                         Text("즐겨찾기")
-                        PageView()
+                        TabView {
+                            ForEach(items, id: \.self) { item in
+                                NavigationLink(destination: QuizView()) {
+                                    CardView {
+                                        VocaQuizItemView(title: item,
+                                                         count: 34)
+                                            .padding()
+                                    }
+                                }
+                            }
+                            .padding(.all, 10)
+                        }
+                        .frame(height: 200)
+                        .tabViewStyle(PageTabViewStyle())
+
                     }
-                    VStack(spacing: 8) {
+                    VStack(spacing: 16) {
                         Text("폴더")
                         ForEach(items, id: \.self) { item in
                             NavigationLink(destination: QuizView()) {
@@ -45,22 +59,6 @@ struct VocaQuizListView: View {
 struct VocaQuizView_Previews: PreviewProvider {
     static var previews: some View {
         VocaQuizListView()
-    }
-}
-
-struct PageView: View {
-    var body: some View {
-        TabView {
-            ForEach(0..<30) { i in
-                ZStack {
-                    Color.black
-                    Text("Row: \(i)").foregroundColor(.white)
-                }.clipShape(RoundedRectangle(cornerRadius: 10.0, style: .continuous))
-            }
-            .padding(.all, 10)
-        }
-        .frame(width: UIScreen.main.bounds.width, height: 200)
-        .tabViewStyle(PageTabViewStyle())
     }
 }
 
