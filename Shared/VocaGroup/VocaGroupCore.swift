@@ -12,6 +12,15 @@ struct VocaGroup: Equatable, Identifiable {
     let id: UUID
     var title: String
     var items: IdentifiedArrayOf<Voca> = []
+    var isFavorite = true
+    
+    var totalCount: Int {
+        return items.count
+    }
+    
+    var favoriteCount: Int {
+        return items.filter{ $0.isFavorite == true }.count
+    }
     
     mutating func add(_ voca: Voca) {
         items.insert(voca, at: 0)

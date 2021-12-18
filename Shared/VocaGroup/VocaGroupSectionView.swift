@@ -8,7 +8,7 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct VocaGroupView: View {
+struct VocaGroupSectionView: View {
     let store: Store<VocaGroup, VocaGroupAction>
     @ObservedObject var viewStore: ViewStore<ViewState, VocaGroupAction>
     
@@ -22,7 +22,7 @@ struct VocaGroupView: View {
         var isSheetPresented = false
         init(state: VocaGroup) {
             self.title = state.title
-            self.count = state.items.count
+            self.count = state.totalCount
         }
     }
     
@@ -43,7 +43,7 @@ struct VocaGroupView: View {
             content: {
                 ForEachStore(
                     self.store.scope(state: \.items, action: VocaGroupAction.voca(id:action:)),
-                    content: VocaView.init(store:)
+                    content: VocaRowView.init(store:)
                 )
                 .onDelete { viewStore.send(.delete($0)) }
                 .onMove { viewStore.send(.move($0, $1)) }
@@ -55,7 +55,7 @@ struct VocaGroupView: View {
 struct VocaGroupView_Previews: PreviewProvider {
     static var previews: some View {
         List {
-            VocaGroupView(store: .init(initialState: .test1, reducer: vocaGroupReducer, environment: .init(mainQueue: .main, uuid: { .init()})))
+            VocaGroupSectionView(store: .init(initialState: .test1, reducer: vocaGroupReducer, environment: .init(mainQueue: .main, uuid: { .init()})))
         }
         .listStyle(InsetGroupedListStyle())
     }
