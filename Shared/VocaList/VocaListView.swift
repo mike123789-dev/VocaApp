@@ -19,8 +19,11 @@ struct VocaListView: View {
     }
     struct ViewState: Equatable {
         var isSheetPresented = false
+        var isNavigationActive = false
         var editMode: EditMode = .inactive
         init(state: VocaListState) {
+            self.editMode = state.editMode
+            self.isNavigationActive = state.isNavigationActive
             self.isSheetPresented = state.isSheetPresented
         }
     }
@@ -30,7 +33,7 @@ struct VocaListView: View {
             List {
                 ForEachStore(
                     self.store.scope(state: \.groups, action: VocaListAction.group(id:action:)),
-                    content: VocaGroupView.init(store:)
+                    content: VocaGroupSectionView.init(store:)
                 )
             }
             .navigationBarItems(
@@ -39,8 +42,19 @@ struct VocaListView: View {
                 ,
                 trailing:
                     HStack {
-                        NavigationLink(destination: AddVocaView()) {
-                            Text("단어 추가")
+                        NavigationLink(destination: IfLetStore(self.store.scope(state: \.addVocaList,
+                                                                                action: VocaListAction.addVocaList),
+                                                               then: { store in
+                                                                AddVocaListView(store: store)
+                                                               }),
+                                       isActive: viewStore.binding(
+                                        get: \.isNavigationActive,
+                                        send: VocaListAction.setNavigation(isActive:)
+                                       )
+                        ) {
+                            Button("단어 추가") {
+                                viewStore.send(.setNavigation(isActive: true))
+                            }
                         }
                     })
             .listStyle(InsetGroupedListStyle())

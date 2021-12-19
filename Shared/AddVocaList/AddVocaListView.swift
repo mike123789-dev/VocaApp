@@ -6,64 +6,47 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
 
 struct AddVocaListView: View {
-    @State private var items = ["Paul", "Taylor", "Adele"]
 
+    let store: Store<AddVocaListState, AddVocaListAction>
+    
     var body: some View {
-        ScrollView {
-            VStack(spacing: 20) {
-                ForEach(items, id: \.self) { item in
+        WithViewStore(store) { viewStore in
+            ScrollView {
+                ForEachStore(
+                    self.store.scope(state: \.addVocas, action: AddVocaListAction.addVoca(id:action:)),
+                    content: AddVocaItemView.init(store:)
+                )
+                .onDelete { viewStore.send(.delete($0)) }
+                Button("추가") {
+                    viewStore.send(.addButtonTapped, animation: .default)
+                }
+            }
+            .toolbar {
+                ToolbarItem(placement: .bottomBar) {
+                    // 3.
                     HStack {
                         Spacer()
-                        CardView {
-                            Text(item)
-                                .frame(width: 200, height: 150, alignment: .center)
-                        }
-                        Spacer()
-                    }
-                    .onDelete {
-                        withAnimation {
-                            remove(item: item)
+                        Button("카메라") {
+                            
                         }
                     }
                 }
-                Button("추가") {
-                    withAnimation {
-                        addItem()
-                    }
-                }
             }
-            .frame(maxWidth: .infinity)
+            .navigationBarTitle("단어 추가", displayMode: .inline)
         }
-        .toolbar {
-            ToolbarItem(placement: .bottomBar) {
-                // 3.
-                HStack {
-                    Spacer()
-                    Button("카메라") {
-                        
-                    }
-                }
-            }
-        }
-        .navigationBarTitle("단어 추가", displayMode: .inline)
     }
     
-    private func addItem() {
-        items.append("FOO \(items.count)")
-    }
-    
-    func remove(item: String) {
-        items.removeAll(where: {$0 == item})
-    }
-
 }
 
 struct AddVocaView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            AddVocaListView()
+            AddVocaListView(store: .init(initialState: .init(groups: [], addVocas: .init(uniqueElements: [.init(id: .init())])), reducer: addVocaListReducer, environment: .init(uuid: {
+                .init()
+            })))
         }
     }
 }

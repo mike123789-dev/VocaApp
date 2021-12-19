@@ -11,7 +11,7 @@ import ComposableArchitecture
 // MARK: - State
 struct QuickAddVocaState: Equatable {
     let group: VocaGroup
-    var addVoca = AddVocaItemState()
+    var addVoca: AddVocaItemState
     
     var isValid: Bool {
         return addVoca.isValid
@@ -23,6 +23,13 @@ struct QuickAddVocaState: Equatable {
     
     var meaning: String {
         return addVoca.addVoca.meaning
+    }
+}
+
+extension QuickAddVocaState {
+    init(id: UUID, group: VocaGroup) {
+        self.addVoca = .init(id: id)
+        self.group = group
     }
 }
 

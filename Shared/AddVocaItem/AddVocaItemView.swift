@@ -49,8 +49,8 @@ struct AddVocaItemView: View {
 
 struct AddVocaItemView_Previews: PreviewProvider {
     static var previews: some View {
-        AddVocaItemView(store: .init(initialState: .init(addVoca: .init(word: "hello", meaning: ""), isFetching: true), reducer: addVocaItemReducer, environment: .init(mainQueue: .main, client: .init())))
-        AddVocaItemView(store: .init(initialState: .init(addVoca: .init(word: "hello", meaning: "안녕"), isFetching: false), reducer: addVocaItemReducer, environment: .init(mainQueue: .main, client: .init())))
+        AddVocaItemView(store: .init(initialState: .init(id: .init(), addVoca: .init(word: "hello", meaning: ""), isFetching: true), reducer: addVocaItemReducer, environment: .init(mainQueue: .main, client: .init())))
+        AddVocaItemView(store: .init(initialState: .init(id: .init(), addVoca: .init(word: "hello", meaning: "안녕"), isFetching: false), reducer: addVocaItemReducer, environment: .init(mainQueue: .main, client: .init())))
 
     }
 }

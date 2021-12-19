@@ -9,7 +9,8 @@
 import ComposableArchitecture
 
 // MARK: - State
-struct AddVocaItemState: Equatable {
+struct AddVocaItemState: Equatable, Identifiable {
+    let id: UUID
     @BindableState var addVoca = AddVocaModel()
     var isFetching = false
     var isValid: Bool {
