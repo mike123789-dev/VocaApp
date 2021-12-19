@@ -35,8 +35,11 @@ struct VocaQuizListView: View {
                                           send: VocaQuizListAction.setNavigation(selection:)
                                         ),
                                         label: {
-                                            VocaGroupItemView(group: item)
+                                            CardView {
+                                                VocaGroupItemView(group: item)
+                                            }
                                         })
+                                        .buttonStyle(PlainButtonStyle())
                                 }
                                 .padding(20)
                             }
@@ -62,8 +65,11 @@ struct VocaQuizListView: View {
                                           send: VocaQuizListAction.setNavigation(selection:)
                                         ),
                                         label: {
-                                            VocaGroupItemView(group: item)
+                                            CardView {
+                                                VocaGroupItemView(group: item)
+                                            }
                                         })
+                                        .buttonStyle(PlainButtonStyle())
                                 }
                             }
                         }

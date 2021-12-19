@@ -8,7 +8,7 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct VocaView: View {
+struct VocaRowView: View {
     let store: Store<Voca, VocaAction>
     
     var body: some View {
@@ -17,7 +17,7 @@ struct VocaView: View {
                 HStack {
                     Text(viewStore.word)
                     Spacer()
-                    if viewStore.isHighlighted {
+                    if viewStore.isShowingMeaning {
                         Text(viewStore.meaning)
                             .foregroundColor(.secondary)
                     }
@@ -38,7 +38,7 @@ struct VocaView: View {
                     viewStore.send(.favoriteToggled, animation: .easeInOut)
                 }
             }))
-            .listRowBackground(viewStore.isHighlighted ? Color.yellow.opacity(0.2) : .clear)
+            .listRowBackground(viewStore.isShowingMeaning ? Color.yellow.opacity(0.2) : .clear)
         }
     }
 }
@@ -47,9 +47,9 @@ struct VocaItemView_Previews: PreviewProvider {
     static var previews: some View {
         List {
             Section(header: Text("Preview")) {
-                VocaView(store: .init(initialState: .sample, reducer: vocaReducer, environment: .init(mainQueue: .main)))
-                VocaView(store: .init(initialState: .favorite, reducer: vocaReducer, environment: .init(mainQueue: .main)))
-                VocaView(store: .init(initialState: .highlighted, reducer: vocaReducer, environment: .init(mainQueue: .main)))
+                VocaRowView(store: .init(initialState: .sample, reducer: vocaReducer, environment: .init(mainQueue: .main)))
+                VocaRowView(store: .init(initialState: .favorite, reducer: vocaReducer, environment: .init(mainQueue: .main)))
+                VocaRowView(store: .init(initialState: .highlighted, reducer: vocaReducer, environment: .init(mainQueue: .main)))
             }
         }
         .listStyle(InsetGroupedListStyle())

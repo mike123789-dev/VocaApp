@@ -10,11 +10,11 @@ import SwiftUI
 struct MainView: View {
     var body: some View {
         TabView {
-            VocaListView()
+            VocaListView(store: .init(initialState: .init(groups: [.test1]), reducer: vocaListReducer, environment: .init(mainQueue: .main, uuid: { .init() })))
                 .tabItem {
                     Label("단어", systemImage: "list.dash")
                 }
-            VocaQuizListView()
+            VocaQuizListView(store: .init(initialState: .init(groups: [.test1]), reducer: vocaQuizListReducer, environment: .init()))
                 .tabItem {
                     Label("시험", systemImage: "square.stack.fill")
                 }

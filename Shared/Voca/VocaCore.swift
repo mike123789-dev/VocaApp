@@ -14,13 +14,39 @@ struct Voca: Equatable, Identifiable {
     var word: String
     var meaning: String
     var isFavorite = false
-    var isHighlighted = false
+    var isShowingMeaning = false // 얘는 따로 빼놔야하나?
+    private var correctCount = 0
+    private var wrongCount = 0
+    
+    var totalCount: Int {
+        correctCount + wrongCount
+    }
+    
+    var correctAnswerRate: Double {
+        Double(correctCount)/Double(totalCount)
+    }
+        
+    mutating func answerWrong() {
+        wrongCount += 1
+    }
+    mutating func answerCorrect() {
+        correctCount += 1
+    }
+
 }
 
 extension Voca {
     static let sample = Voca(id: .init(), word: "Sample", meaning: "샘플")
-    static let favorite = Voca(id: .init(), word: "Favorited", meaning: "푸", isFavorite: true, isHighlighted: false)
-    static let highlighted = Voca(id: .init(), word: "Highlighted", meaning: "하이라이트", isFavorite: true, isHighlighted: true)
+    static let favorite = Voca(id: .init(), word: "Favorited", meaning: "푸", isFavorite: true, isShowingMeaning: false)
+    static let highlighted = Voca(id: .init(), word: "Highlighted", meaning: "하이라이트", isFavorite: true, isShowingMeaning: true)
+}
+
+extension Voca {
+    init(id: UUID, word: String, meaning: String) {
+        self.id = id
+        self.word = word
+        self.meaning = meaning
+    }
 }
 
 // MARK: - Action
@@ -29,7 +55,7 @@ enum VocaAction: Equatable {
     case wordTextChanged(String)
     case meaningTextChanged(String)
     case favoriteToggled
-    case unHighlight
+    case stopShowingMeaning
 }
 
 // MARK: - Environment
@@ -42,9 +68,9 @@ let vocaReducer = Reducer<Voca, VocaAction, VocaEnvironment> { state, action, en
     switch action {
     case .tapped:
         //TODO: 1초후에 뜻 다시 뜻 숨기기
-        state.isHighlighted.toggle()
-        if state.isHighlighted {
-            return Effect(value: .unHighlight)
+        state.isShowingMeaning.toggle()
+        if state.isShowingMeaning {
+            return Effect(value: .stopShowingMeaning)
                 .debounce(id: state.id, for: 1.5, scheduler: environment.mainQueue.animation())
         } else {
             return .none
@@ -62,10 +88,8 @@ let vocaReducer = Reducer<Voca, VocaAction, VocaEnvironment> { state, action, en
         state.isFavorite.toggle()
         return .none
         
-    case .unHighlight:
-        state.isHighlighted = false
+    case .stopShowingMeaning:
+        state.isShowingMeaning = false
         return .none
     }
 }
-
-
