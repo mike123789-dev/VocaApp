@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AddVocaView: View {
+struct AddVocaListView: View {
     @State private var items = ["Paul", "Taylor", "Adele"]
 
     var body: some View {
@@ -47,7 +47,7 @@ struct AddVocaView: View {
                 }
             }
         }
-        .navigationBarTitle("단어 추가")
+        .navigationBarTitle("단어 추가", displayMode: .inline)
     }
     
     private func addItem() {
@@ -63,7 +63,7 @@ struct AddVocaView: View {
 struct AddVocaView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            AddVocaView()
+            AddVocaListView()
         }
     }
 }
