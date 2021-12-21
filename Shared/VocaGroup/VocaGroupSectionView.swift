@@ -45,8 +45,22 @@ struct VocaGroupSectionView: View {
                     self.store.scope(state: \.items, action: VocaGroupAction.voca(id:action:)),
                     content: VocaRowView.init(store:)
                 )
-                .onDelete { viewStore.send(.delete($0)) }
                 .onMove { viewStore.send(.move($0, $1)) }
+                .swipeActions(edge: .leading, allowsFullSwipe: false) {
+                    Button {
+                        //TODO: favorite action 보내기
+                    } label: {
+                        Label("Favorite", systemImage: "star.fill")
+                    }
+                    .tint(.yellow)
+                }
+                .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                    Button(role: .destructive) {
+                        //TODO: delete action 보내기
+                    } label: {
+                        Label("Delete", systemImage: "trash.fill")
+                    }
+                }
             }
         )
     }
