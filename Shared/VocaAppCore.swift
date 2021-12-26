@@ -31,6 +31,7 @@ enum VocaAppAction: Equatable {
 struct VocaAppCoreEnvironment {
     var fileClient: FileClient
     var mainQueue: AnySchedulerOf<DispatchQueue>
+    var backgroundQueue: AnySchedulerOf<DispatchQueue>
     var uuid: () -> UUID
 }
 
@@ -40,7 +41,7 @@ let vocaAppReducer = Reducer<VocaAppState, VocaAppAction, VocaAppCoreEnvironment
         .pullback(
             state: \.vocaList,
             action: /VocaAppAction.vocaList,
-            environment: { .init(fileClient: $0.fileClient, mainQueue: $0.mainQueue, uuid: $0.uuid) }
+            environment: { .init(fileClient: $0.fileClient, mainQueue: $0.mainQueue, backgroundQueue: $0.backgroundQueue, uuid: $0.uuid) }
         ),
     vocaQuizListReducer
         .pullback(

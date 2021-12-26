@@ -15,12 +15,14 @@ struct VocaListState: Equatable {
     var groups: IdentifiedArrayOf<VocaGroup> = []
     var quickAddVoca: QuickAddVocaState?
     var addVocaList: AddVocaListState?
+    var newGroup: NewGroupState?
     var isSheetPresented = false
     var isNavigationActive = false
 }
 
 extension VocaListState {
-    init(groups: [VocaGroup]) {
+    init(list: VocaList) {
+        let groups = list.groups
         self.groups = .init(uniqueElements: groups)
     }
 }
@@ -34,12 +36,20 @@ enum VocaListAction: Equatable {
     case addVocaList(AddVocaListAction)
     case setSheet(isPresented: Bool)
     case setNavigation(isActive: Bool)
+    case newGroup(NewGroupAction)
+    case addGroupButonTapped
 }
 
 // MARK: - Environment
 struct VocaListEnvironment {
+    var fileClient: FileClient
     var mainQueue: AnySchedulerOf<DispatchQueue>
+    var backgroundQueue: AnySchedulerOf<DispatchQueue>
     var uuid: () -> UUID
+}
+
+extension VocaListEnvironment {
+    static let live = Self(fileClient: .live, mainQueue: .main, backgroundQueue: .immediate, uuid: { .init() })
 }
 
 // MARK: - Reducer
@@ -49,6 +59,12 @@ let vocaListReducer = Reducer<VocaListState, VocaListAction, VocaListEnvironment
         action: /VocaListAction.group(id:action:),
         environment: { .init(mainQueue: $0.mainQueue, uuid: $0.uuid) }
     ),
+    newGroupReducer.optional()
+        .pullback(
+            state: \.newGroup,
+            action: /VocaListAction.newGroup,
+            environment: { _ in ()}
+        ),
     quickAddVocaReducer.optional()
         .pullback(
             state: \.quickAddVoca,
@@ -71,6 +87,22 @@ let vocaListReducer = Reducer<VocaListState, VocaListAction, VocaListEnvironment
             //      state.todos.move(fromOffsets: source, toOffset: destination)
             return .none
             
+        case .addGroupButonTapped:
+            state.isSheetPresented = true
+            state.newGroup = .init()
+            return .none
+            
+        case .newGroup(.confirmButtonTapped):
+            guard let title = state.newGroup?.title else { return .none }
+            let newGroup = VocaGroup(id: environment.uuid(), title: title)
+            state.groups.append(newGroup)
+            state.isSheetPresented = false
+            state.editMode = .inactive
+            return environment.fileClient
+                .saveVocaList(vocaList: .init(groups: state.groups.elements), on: environment.backgroundQueue)
+                .receive(on: environment.mainQueue)
+                .fireAndForget()
+            
         case .quickAddVoca(let action):
             switch action {
             case .cancelButtonTapped:
@@ -86,13 +118,17 @@ let vocaListReducer = Reducer<VocaListState, VocaListAction, VocaListEnvironment
                 state.groups.update(updatedGroup, at: index)
                 state.isSheetPresented = false
                 state.quickAddVoca = nil
-                return .none
+                return environment.fileClient
+                    .saveVocaList(vocaList: .init(groups: state.groups.elements), on: environment.backgroundQueue)
+                    .receive(on: environment.mainQueue)
+                    .fireAndForget()
             default:
                 return .none
             }
             
         case .setSheet(isPresented: false):
             state.isSheetPresented = false
+            state.newGroup = nil
             state.quickAddVoca = nil
             return .none
             
@@ -100,12 +136,12 @@ let vocaListReducer = Reducer<VocaListState, VocaListAction, VocaListEnvironment
             state.isNavigationActive = true
             state.addVocaList = .init(id: environment.uuid(), groups: state.groups.elements)
             return .none
-
+            
         case .setNavigation(isActive: false):
             state.isNavigationActive = false
             state.addVocaList = nil
             return .none
-
+            
         case let .group(id: id, action: action):
             switch action {
             case .addVocaButtonTapped:

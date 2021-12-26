@@ -18,6 +18,7 @@ struct VocaApp: App {
                     environment: VocaAppCoreEnvironment(
                         fileClient: .live,
                         mainQueue: .main,
+                        backgroundQueue: DispatchQueue(label: "background-queue").eraseToAnyScheduler(),
                         uuid: {
                             .init()
                         }
@@ -27,3 +28,6 @@ struct VocaApp: App {
         }
     }
 }
+
+//      backgroundQueue: DispatchQueue(label: "background-queue").eraseToAnyScheduler(),
+

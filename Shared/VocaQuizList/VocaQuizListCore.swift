@@ -12,14 +12,23 @@ import ComposableArchitecture
 struct VocaQuizListState: Equatable {
     var favoriteGroups: IdentifiedArrayOf<VocaGroup> = []
     var groups: IdentifiedArrayOf<VocaGroup> = []
-    
     var selection: Identified<VocaGroup.ID, VocaQuizState>?
+}
+
+extension VocaQuizListState {
     
     init(groups: [VocaGroup]) {
         let favorites = groups.filter{ $0.isFavorite == true }
         self.favoriteGroups = .init(uniqueElements: favorites)
         self.groups = .init(uniqueElements: groups)
     }
+
+    init(list: VocaList) {
+        let favorites = list.groups.filter{ $0.isFavorite == true }
+        self.favoriteGroups = .init(uniqueElements: favorites)
+        self.groups = .init(uniqueElements: list.groups)
+    }
+    
 }
 
 // MARK: - Action

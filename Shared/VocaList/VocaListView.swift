@@ -71,30 +71,32 @@ struct VocaListView: View {
                     ),
                     then: QuickAddVocaView.init(store:)
                 )
+                IfLetStore(
+                                    self.store.scope(
+                                        state: \.newGroup,
+                                        action: VocaListAction.newGroup
+                                    ),
+                                    then: { store in
+                                        NewGroupView(store: store)
+                                    }
+                )
             }
             
             .toolbar {
                 ToolbarItem(placement: .bottomBar) {
-                    // 3.
                     if viewStore.editMode == .active {
-                        HStack(spacing: 50) {
-                            Image(systemName: "trash")
-                            Image(systemName: "info")
-                            Image(systemName: "paperclip")
-                            Text("Share")
-                            // 4.
-                            HStack {
-                                Image(systemName: "photo")
-                                Text("Photo")
+                        HStack() {
+                            Button("폴더 추가") {
+                                viewStore.send(.addGroupButonTapped)
                             }
+                            Spacer()
                         }
-                        
                     }
                 }
             }
             .environment(
                 \.editMode,
-                self.viewStore.binding(get: \.editMode, send: VocaListAction.editModeChanged)
+                 self.viewStore.binding(get: \.editMode, send: VocaListAction.editModeChanged)
             )
             
             .navigationBarTitle("단어장")
@@ -109,7 +111,7 @@ struct VocaListView: View {
 
 struct VocaListView_Previews: PreviewProvider {
     static var previews: some View {
-        VocaListView(store: .init(initialState: .init(groups: [.test1, .init(id: .init(), title: "empty")]), reducer: vocaListReducer, environment: .init(mainQueue: .main, uuid: { .init() })))
+        VocaListView(store: .init(initialState: .init(groups: [.test1, .init(id: .init(), title: "empty")]), reducer: vocaListReducer, environment: .live))
     }
 }
 

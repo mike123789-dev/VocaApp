@@ -51,10 +51,10 @@ let vocaGroupReducer = Reducer<VocaGroup, VocaGroupAction, VocaGroupEnvironment>
     ),
     Reducer { state, action, environment in
         switch action {
-        case let .delete(indexSet):
-            state.items.remove(atOffsets: indexSet)
+        case let .voca(id: id, action: .delete):
+            state.items.remove(id: id)
             return .none
-            
+
         case .move(_, _):
             return .none
             

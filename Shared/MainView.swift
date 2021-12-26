@@ -6,24 +6,34 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
 
 struct MainView: View {
+    let store: Store<VocaAppState, VocaAppAction>
     var body: some View {
-        TabView {
-            VocaListView(store: .init(initialState: .init(groups: [.test1]), reducer: vocaListReducer, environment: .init(mainQueue: .main, uuid: { .init() })))
-                .tabItem {
-                    Label("단어", systemImage: "list.dash")
-                }
-            VocaQuizListView(store: .init(initialState: .init(groups: [.test1]), reducer: vocaQuizListReducer, environment: .init()))
-                .tabItem {
-                    Label("시험", systemImage: "square.stack.fill")
-                }
+        WithViewStore(store.stateless) { viewStore in
+            TabView {
+                VocaListView(store: self.store.scope(state: \.vocaList, action: VocaAppAction.vocaList))
+                    .tabItem {
+                        Label("단어", systemImage: "list.dash")
+                    }
+                VocaQuizListView(store: self.store.scope(state: \.vocaQuizList, action: VocaAppAction.vocaQuizList))
+                    .tabItem {
+                        Label("시험", systemImage: "square.stack.fill")
+                    }
+            }
+            .onAppear {
+                viewStore.send(.viewAppeared)
+            }
         }
     }
 }
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView()
+        MainView(store: .init(initialState: .init(), reducer: vocaAppReducer, environment: VocaAppCoreEnvironment(fileClient: .live, mainQueue: .main, backgroundQueue: DispatchQueue(label: "background-queue").eraseToAnyScheduler(), uuid: {
+            .init()
+        })))
+            .preferredColorScheme(.dark)
     }
 }

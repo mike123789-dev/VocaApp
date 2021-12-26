@@ -22,7 +22,6 @@ struct VocaRowView: View {
                             .foregroundColor(.secondary)
                     }
                 }
-//                .padding(.leading, 14)
                 if viewStore.isFavorite {
                     Image(systemName: "star")
                         .scaleEffect(0.4)
@@ -31,14 +30,48 @@ struct VocaRowView: View {
             }
             .contentShape(Rectangle())
             .onTapGesture {
-                viewStore.send(.tapped, animation: .easeInOut)
+                viewStore.send(.tapped)
+            }
+            .sheet(
+                isPresented: viewStore.binding(
+                    get: \.isSheetPresented,
+                    send: VocaAction.setSheet(isPresented:)
+                )
+            ) {
+                Text("TEST")
             }
             .contextMenu(ContextMenu(menuItems: {
                 Button("favorite") {
                     viewStore.send(.favoriteToggled, animation: .easeInOut)
                 }
             }))
-            .listRowBackground(viewStore.isShowingMeaning ? Color.yellow.opacity(0.2) : .clear)
+            .if(viewStore.isShowingMeaning, transform: { view in
+                view.listRowBackground(Color.yellow.opacity(0.2))
+                    .transition(.opacity)
+            })
+            .swipeActions(edge: .leading, allowsFullSwipe: false) {
+                Button {
+                    viewStore.send(.favoriteToggled, animation: .easeInOut)
+                } label: {
+                    Label("Favorite", systemImage: "star.fill")
+                }
+                .tint(.yellow)
+                
+                Button {
+                    viewStore.send(.modify, animation: .easeInOut)
+                } label: {
+                    Text("수정")
+                }
+                .tint(.blue)
+
+            }
+            .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                Button(role: .destructive) {
+                    viewStore.send(.delete, animation: .default)
+                } label: {
+                    Label("Delete", systemImage: "trash.fill")
+                }
+            }
         }
     }
 }

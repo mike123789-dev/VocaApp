@@ -69,6 +69,10 @@
 		CE6DF2B727788AD00034B2BE /* Live.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6DF2B527788AD00034B2BE /* Live.swift */; };
 		CE6DF2B927788AD50034B2BE /* Mocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6DF2B827788AD50034B2BE /* Mocks.swift */; };
 		CE6DF2BA27788AD50034B2BE /* Mocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6DF2B827788AD50034B2BE /* Mocks.swift */; };
+		CE6DF2BC27789B790034B2BE /* NewGroupCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6DF2BB27789B790034B2BE /* NewGroupCore.swift */; };
+		CE6DF2BD27789B790034B2BE /* NewGroupCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6DF2BB27789B790034B2BE /* NewGroupCore.swift */; };
+		CE6DF2BF27789B8C0034B2BE /* NewGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6DF2BE27789B8C0034B2BE /* NewGroupView.swift */; };
+		CE6DF2C027789B8C0034B2BE /* NewGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6DF2BE27789B8C0034B2BE /* NewGroupView.swift */; };
 		CEF80DEC26F762A7004F259C /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF80DEB26F762A7004F259C /* CardView.swift */; };
 		CEF80DED26F762A7004F259C /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF80DEB26F762A7004F259C /* CardView.swift */; };
 		CEF80DEF26F764B2004F259C /* ContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF80DEE26F764B2004F259C /* ContainerView.swift */; };
@@ -142,6 +146,8 @@
 		CE6DF2B227788AC80034B2BE /* FileClientEffects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileClientEffects.swift; sourceTree = "<group>"; };
 		CE6DF2B527788AD00034B2BE /* Live.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Live.swift; sourceTree = "<group>"; };
 		CE6DF2B827788AD50034B2BE /* Mocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mocks.swift; sourceTree = "<group>"; };
+		CE6DF2BB27789B790034B2BE /* NewGroupCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGroupCore.swift; sourceTree = "<group>"; };
+		CE6DF2BE27789B8C0034B2BE /* NewGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGroupView.swift; sourceTree = "<group>"; };
 		CEF80DEB26F762A7004F259C /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		CEF80DEE26F764B2004F259C /* ContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerView.swift; sourceTree = "<group>"; };
 		CEF80DF126F764E1004F259C /* AddVocaListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddVocaListView.swift; sourceTree = "<group>"; };
@@ -270,12 +276,11 @@
 				51554D7026F380BA0030BB2D /* MainView.swift */,
 				CE6DF2AB277883C90034B2BE /* Clients */,
 				512CF30F276E18B300706071 /* Models */,
-				512CF323276EAE4700706071 /* QuickAddVoca */,
 				512CF322276EAE4000706071 /* AddVocaList */,
 				512CF307276C3AC300706071 /* AddVocaItem */,
+				CEF80DF726F76CAA004F259C /* VocaList */,
 				512CF306276C3AB300706071 /* VocaGroup */,
 				512CF305276C3A3A00706071 /* Voca */,
-				CEF80DF726F76CAA004F259C /* VocaList */,
 				512CF308276C3AE300706071 /* VocaQuizList */,
 				CEF80DF826F76CB2004F259C /* VocaQuiz */,
 				CEF80DEA26F7629C004F259C /* CommonViews */,
@@ -360,6 +365,15 @@
 			path = Clients;
 			sourceTree = "<group>";
 		};
+		CE6DF2C12778A2EC0034B2BE /* NewGroup */ = {
+			isa = PBXGroup;
+			children = (
+				CE6DF2BB27789B790034B2BE /* NewGroupCore.swift */,
+				CE6DF2BE27789B8C0034B2BE /* NewGroupView.swift */,
+			);
+			path = NewGroup;
+			sourceTree = "<group>";
+		};
 		CEF80DEA26F7629C004F259C /* CommonViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -373,6 +387,8 @@
 		CEF80DF726F76CAA004F259C /* VocaList */ = {
 			isa = PBXGroup;
 			children = (
+				CE6DF2C12778A2EC0034B2BE /* NewGroup */,
+				512CF323276EAE4700706071 /* QuickAddVoca */,
 				512CF2F0276B839F00706071 /* VocaListCore.swift */,
 				51554D3426F37DAD0030BB2D /* VocaListView.swift */,
 			);
@@ -571,7 +587,9 @@
 				512CF2F1276B839F00706071 /* VocaListCore.swift in Sources */,
 				CEF80DF526F76C7C004F259C /* VocaQuizView.swift in Sources */,
 				512CF317276E1BD100706071 /* VocaGroupItemView.swift in Sources */,
+				CE6DF2BF27789B8C0034B2BE /* NewGroupView.swift in Sources */,
 				CEF80DFD26F7721A004F259C /* VocaRowView.swift in Sources */,
+				CE6DF2BC27789B790034B2BE /* NewGroupCore.swift in Sources */,
 				512CF31A276E209B00706071 /* VocaQuizCore.swift in Sources */,
 				512CF325276EB7CD00706071 /* AddVocaListCore.swift in Sources */,
 				512CF30D276C4C6900706071 /* SwipableCardView.swift in Sources */,
@@ -612,6 +630,7 @@
 				512CF2F2276B839F00706071 /* VocaListCore.swift in Sources */,
 				CEF80DF626F76C7C004F259C /* VocaQuizView.swift in Sources */,
 				512CF318276E1BD100706071 /* VocaGroupItemView.swift in Sources */,
+				CE6DF2C027789B8C0034B2BE /* NewGroupView.swift in Sources */,
 				CE6DF2B427788AC80034B2BE /* FileClientEffects.swift in Sources */,
 				CEF80DFE26F7721A004F259C /* VocaRowView.swift in Sources */,
 				512CF31B276E209B00706071 /* VocaQuizCore.swift in Sources */,
@@ -621,6 +640,7 @@
 				51554D5D26F37DAF0030BB2D /* VocaApp.swift in Sources */,
 				CE6DF2A0277881F10034B2BE /* VocaList.swift in Sources */,
 				CE6DF2B1277888850034B2BE /* Combine+.swift in Sources */,
+				CE6DF2BD27789B790034B2BE /* NewGroupCore.swift in Sources */,
 				512CF30B276C3EC400706071 /* VocaCardView.swift in Sources */,
 				CEF80DED26F762A7004F259C /* CardView.swift in Sources */,
 				512CF2FB276B8FB100706071 /* VocaGroupCore.swift in Sources */,

@@ -21,7 +21,6 @@ struct AddVocaItemState: Equatable, Identifiable {
 // MARK: - Action
 enum AddVocaItemAction: BindableAction, Equatable {
     case binding(BindingAction<AddVocaItemState>)
-    
 }
 
 struct VocaNetworkClient {

@@ -15,6 +15,7 @@ struct Voca: Equatable, Identifiable, Codable {
     var meaning: String
     var isFavorite = false
     var isShowingMeaning = false // 얘는 따로 빼놔야하나?
+    var isSheetPresented = false // 얘는 따로 빼놔야하나?
     private var correctCount = 0
     private var wrongCount = 0
     
@@ -56,6 +57,9 @@ enum VocaAction: Equatable {
     case meaningTextChanged(String)
     case favoriteToggled
     case stopShowingMeaning
+    case delete
+    case modify
+    case setSheet(isPresented: Bool)
 }
 
 // MARK: - Environment
@@ -90,6 +94,9 @@ let vocaReducer = Reducer<Voca, VocaAction, VocaEnvironment> { state, action, en
         
     case .stopShowingMeaning:
         state.isShowingMeaning = false
+        return .none
+        
+    default:
         return .none
     }
 }
