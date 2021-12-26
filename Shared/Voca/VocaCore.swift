@@ -9,7 +9,7 @@
 import ComposableArchitecture
 
 // MARK: - State
-struct Voca: Equatable, Identifiable {
+struct Voca: Equatable, Identifiable, Codable {
     let id: UUID
     var word: String
     var meaning: String

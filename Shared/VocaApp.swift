@@ -11,7 +11,19 @@ import SwiftUI
 struct VocaApp: App {
     var body: some Scene {
         WindowGroup {
-            MainView()
+            MainView(
+                store: .init(
+                    initialState: .init(),
+                    reducer: vocaAppReducer,
+                    environment: VocaAppCoreEnvironment(
+                        fileClient: .live,
+                        mainQueue: .main,
+                        uuid: {
+                            .init()
+                        }
+                    )
+                )
+            )
         }
     }
 }

@@ -8,7 +8,7 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct VocaGroup: Equatable, Identifiable {
+struct VocaGroup: Equatable, Identifiable, Codable {
     let id: UUID
     var title: String
     var items: IdentifiedArrayOf<Voca> = []
