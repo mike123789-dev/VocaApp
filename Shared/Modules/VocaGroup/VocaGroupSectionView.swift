@@ -34,10 +34,14 @@ struct VocaGroupSectionView: View {
                 Spacer()
                 if let editMode = editMode {
                     if editMode.wrappedValue.isEditing {
-                        Button("delete") {
+                        HStack {
+                            Button("삭제") {
+                            }
+                            Button("수정") {
+                            }
                         }
                     } else {
-                        Button("add") {
+                        Button("빠른 추가") {
                             viewStore.send(.addVocaButtonTapped, animation: .easeInOut)
                         }
                     }

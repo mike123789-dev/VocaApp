@@ -51,8 +51,8 @@
 		51554D7426F381B10030BB2D /* VocaQuizListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51554D7326F381B10030BB2D /* VocaQuizListView.swift */; };
 		51554D7526F381B10030BB2D /* VocaQuizListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51554D7326F381B10030BB2D /* VocaQuizListView.swift */; };
 		CE08300D277211D900252BCE /* If.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE08300C277211D900252BCE /* If.swift */; };
-		CE6DF297277681FA0034B2BE /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6DF296277681FA0034B2BE /* SwiftUIView.swift */; };
-		CE6DF298277681FA0034B2BE /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6DF296277681FA0034B2BE /* SwiftUIView.swift */; };
+		CE6DF297277681FA0034B2BE /* SimpleFocusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6DF296277681FA0034B2BE /* SimpleFocusView.swift */; };
+		CE6DF298277681FA0034B2BE /* SimpleFocusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6DF296277681FA0034B2BE /* SimpleFocusView.swift */; };
 		CE6DF29A2776C8F30034B2BE /* VocaAppCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6DF2992776C8F30034B2BE /* VocaAppCore.swift */; };
 		CE6DF29B2776C8F30034B2BE /* VocaAppCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6DF2992776C8F30034B2BE /* VocaAppCore.swift */; };
 		CE6DF29F277881F10034B2BE /* VocaList.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6DF29E277881F10034B2BE /* VocaList.swift */; };
@@ -137,7 +137,7 @@
 		51554D7026F380BA0030BB2D /* VocaAppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocaAppView.swift; sourceTree = "<group>"; };
 		51554D7326F381B10030BB2D /* VocaQuizListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocaQuizListView.swift; sourceTree = "<group>"; };
 		CE08300C277211D900252BCE /* If.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = If.swift; sourceTree = "<group>"; };
-		CE6DF296277681FA0034B2BE /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
+		CE6DF296277681FA0034B2BE /* SimpleFocusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleFocusView.swift; sourceTree = "<group>"; };
 		CE6DF2992776C8F30034B2BE /* VocaAppCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocaAppCore.swift; sourceTree = "<group>"; };
 		CE6DF29E277881F10034B2BE /* VocaList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocaList.swift; sourceTree = "<group>"; };
 		CE6DF2A2277882350034B2BE /* URL+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+.swift"; sourceTree = "<group>"; };
@@ -214,7 +214,7 @@
 			children = (
 				512CF31F276EA75D00706071 /* AddVocaItemCore.swift */,
 				512CF31C276EA6F700706071 /* AddVocaItemView.swift */,
-				CE6DF296277681FA0034B2BE /* SwiftUIView.swift */,
+				CE6DF296277681FA0034B2BE /* SimpleFocusView.swift */,
 			);
 			path = AddVocaItem;
 			sourceTree = "<group>";
@@ -381,7 +381,10 @@
 			isa = PBXGroup;
 			children = (
 				512CF322276EAE4000706071 /* AddVocaList */,
-				CEF80DF726F76CAA004F259C /* VocaList */,
+				CE6DF2C12778A2EC0034B2BE /* NewGroup */,
+				512CF323276EAE4700706071 /* QuickAddVoca */,
+				512CF2F0276B839F00706071 /* VocaListCore.swift */,
+				51554D3426F37DAD0030BB2D /* VocaListView.swift */,
 			);
 			path = VocaList;
 			sourceTree = "<group>";
@@ -414,17 +417,6 @@
 				CEF80DEE26F764B2004F259C /* ContainerView.swift */,
 			);
 			path = CommonViews;
-			sourceTree = "<group>";
-		};
-		CEF80DF726F76CAA004F259C /* VocaList */ = {
-			isa = PBXGroup;
-			children = (
-				CE6DF2C12778A2EC0034B2BE /* NewGroup */,
-				512CF323276EAE4700706071 /* QuickAddVoca */,
-				512CF2F0276B839F00706071 /* VocaListCore.swift */,
-				51554D3426F37DAD0030BB2D /* VocaListView.swift */,
-			);
-			path = VocaList;
 			sourceTree = "<group>";
 		};
 		CEF80DF826F76CB2004F259C /* VocaQuiz */ = {
@@ -615,7 +607,7 @@
 				CEF80DF226F764E1004F259C /* AddVocaListView.swift in Sources */,
 				512CF314276E1A6700706071 /* VocaQuizListCore.swift in Sources */,
 				51554D7426F381B10030BB2D /* VocaQuizListView.swift in Sources */,
-				CE6DF297277681FA0034B2BE /* SwiftUIView.swift in Sources */,
+				CE6DF297277681FA0034B2BE /* SimpleFocusView.swift in Sources */,
 				512CF2F1276B839F00706071 /* VocaListCore.swift in Sources */,
 				CEF80DF526F76C7C004F259C /* VocaQuizView.swift in Sources */,
 				512CF317276E1BD100706071 /* VocaGroupItemView.swift in Sources */,
@@ -644,7 +636,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE6DF2A4277882350034B2BE /* URL+.swift in Sources */,
-				CE6DF298277681FA0034B2BE /* SwiftUIView.swift in Sources */,
+				CE6DF298277681FA0034B2BE /* SimpleFocusView.swift in Sources */,
 				51554D5F26F37DAF0030BB2D /* VocaListView.swift in Sources */,
 				512CF301276B964800706071 /* QuickAddVocaCore.swift in Sources */,
 				512CF321276EA75D00706071 /* AddVocaItemCore.swift in Sources */,
