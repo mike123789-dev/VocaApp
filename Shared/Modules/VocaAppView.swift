@@ -8,7 +8,7 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct MainView: View {
+struct VocaAppView: View {
     let store: Store<VocaAppState, VocaAppAction>
     var body: some View {
         WithViewStore(store.stateless) { viewStore in
@@ -31,7 +31,7 @@ struct MainView: View {
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView(store: .init(initialState: .init(), reducer: vocaAppReducer, environment: VocaAppCoreEnvironment(fileClient: .live, mainQueue: .main, backgroundQueue: DispatchQueue(label: "background-queue").eraseToAnyScheduler(), uuid: {
+        VocaAppView(store: .init(initialState: .init(), reducer: vocaAppReducer, environment: VocaAppCoreEnvironment(fileClient: .live, mainQueue: .main, backgroundQueue: DispatchQueue(label: "background-queue").eraseToAnyScheduler(), uuid: {
             .init()
         })))
             .preferredColorScheme(.dark)

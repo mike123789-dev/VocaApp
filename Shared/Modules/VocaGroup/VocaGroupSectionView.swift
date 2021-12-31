@@ -11,7 +11,8 @@ import ComposableArchitecture
 struct VocaGroupSectionView: View {
     let store: Store<VocaGroup, VocaGroupAction>
     @ObservedObject var viewStore: ViewStore<ViewState, VocaGroupAction>
-    
+    @Environment(\.editMode) var editMode
+
     init(store: Store<VocaGroup, VocaGroupAction>) {
         self.store = store
         self.viewStore = ViewStore(store.scope(state: { ViewState(state: $0) }))
@@ -31,8 +32,15 @@ struct VocaGroupSectionView: View {
             header: HStack {
                 Text(viewStore.title)
                 Spacer()
-                Button("add") {
-                    viewStore.send(.addVocaButtonTapped, animation: .easeInOut)
+                if let editMode = editMode {
+                    if editMode.wrappedValue.isEditing {
+                        Button("delete") {
+                        }
+                    } else {
+                        Button("add") {
+                            viewStore.send(.addVocaButtonTapped, animation: .easeInOut)
+                        }
+                    }
                 }
             },
             footer: HStack {

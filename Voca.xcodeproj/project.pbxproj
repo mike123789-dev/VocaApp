@@ -46,8 +46,8 @@
 		51554D5F26F37DAF0030BB2D /* VocaListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51554D3426F37DAD0030BB2D /* VocaListView.swift */; };
 		51554D6026F37DAF0030BB2D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51554D3526F37DAF0030BB2D /* Assets.xcassets */; };
 		51554D6126F37DAF0030BB2D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51554D3526F37DAF0030BB2D /* Assets.xcassets */; };
-		51554D7126F380BA0030BB2D /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51554D7026F380BA0030BB2D /* MainView.swift */; };
-		51554D7226F380BA0030BB2D /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51554D7026F380BA0030BB2D /* MainView.swift */; };
+		51554D7126F380BA0030BB2D /* VocaAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51554D7026F380BA0030BB2D /* VocaAppView.swift */; };
+		51554D7226F380BA0030BB2D /* VocaAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51554D7026F380BA0030BB2D /* VocaAppView.swift */; };
 		51554D7426F381B10030BB2D /* VocaQuizListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51554D7326F381B10030BB2D /* VocaQuizListView.swift */; };
 		51554D7526F381B10030BB2D /* VocaQuizListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51554D7326F381B10030BB2D /* VocaQuizListView.swift */; };
 		CE08300D277211D900252BCE /* If.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE08300C277211D900252BCE /* If.swift */; };
@@ -134,7 +134,7 @@
 		51554D5526F37DAF0030BB2D /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		51554D5926F37DAF0030BB2D /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		51554D5B26F37DAF0030BB2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		51554D7026F380BA0030BB2D /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		51554D7026F380BA0030BB2D /* VocaAppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocaAppView.swift; sourceTree = "<group>"; };
 		51554D7326F381B10030BB2D /* VocaQuizListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocaQuizListView.swift; sourceTree = "<group>"; };
 		CE08300C277211D900252BCE /* If.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = If.swift; sourceTree = "<group>"; };
 		CE6DF296277681FA0034B2BE /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
@@ -241,6 +241,7 @@
 		512CF322276EAE4000706071 /* AddVocaList */ = {
 			isa = PBXGroup;
 			children = (
+				512CF307276C3AC300706071 /* AddVocaItem */,
 				512CF324276EB7CD00706071 /* AddVocaListCore.swift */,
 				CEF80DF126F764E1004F259C /* AddVocaListView.swift */,
 			);
@@ -272,17 +273,9 @@
 			isa = PBXGroup;
 			children = (
 				51554D3326F37DAD0030BB2D /* VocaApp.swift */,
-				CE6DF2992776C8F30034B2BE /* VocaAppCore.swift */,
-				51554D7026F380BA0030BB2D /* MainView.swift */,
+				CEADEC7D277F30560010F49A /* Modules */,
 				CE6DF2AB277883C90034B2BE /* Clients */,
 				512CF30F276E18B300706071 /* Models */,
-				512CF322276EAE4000706071 /* AddVocaList */,
-				512CF307276C3AC300706071 /* AddVocaItem */,
-				CEF80DF726F76CAA004F259C /* VocaList */,
-				512CF306276C3AB300706071 /* VocaGroup */,
-				512CF305276C3A3A00706071 /* Voca */,
-				512CF308276C3AE300706071 /* VocaQuizList */,
-				CEF80DF826F76CB2004F259C /* VocaQuiz */,
 				CEF80DEA26F7629C004F259C /* CommonViews */,
 				CE08300B277211C800252BCE /* ViewModifiers */,
 				CE6DF2A12778821B0034B2BE /* Extensions */,
@@ -357,10 +350,7 @@
 		CE6DF2AB277883C90034B2BE /* Clients */ = {
 			isa = PBXGroup;
 			children = (
-				CE6DF2AC277883D10034B2BE /* FileClient.swift */,
-				CE6DF2B227788AC80034B2BE /* FileClientEffects.swift */,
-				CE6DF2B527788AD00034B2BE /* Live.swift */,
-				CE6DF2B827788AD50034B2BE /* Mocks.swift */,
+				CEADEC80277F30F30010F49A /* FileClient */,
 			);
 			path = Clients;
 			sourceTree = "<group>";
@@ -372,6 +362,48 @@
 				CE6DF2BE27789B8C0034B2BE /* NewGroupView.swift */,
 			);
 			path = NewGroup;
+			sourceTree = "<group>";
+		};
+		CEADEC7D277F30560010F49A /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				CE6DF2992776C8F30034B2BE /* VocaAppCore.swift */,
+				51554D7026F380BA0030BB2D /* VocaAppView.swift */,
+				512CF305276C3A3A00706071 /* Voca */,
+				512CF306276C3AB300706071 /* VocaGroup */,
+				CEADEC7F277F309D0010F49A /* VocaQuiz */,
+				CEADEC7E277F30930010F49A /* VocaList */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		CEADEC7E277F30930010F49A /* VocaList */ = {
+			isa = PBXGroup;
+			children = (
+				512CF322276EAE4000706071 /* AddVocaList */,
+				CEF80DF726F76CAA004F259C /* VocaList */,
+			);
+			path = VocaList;
+			sourceTree = "<group>";
+		};
+		CEADEC7F277F309D0010F49A /* VocaQuiz */ = {
+			isa = PBXGroup;
+			children = (
+				512CF308276C3AE300706071 /* VocaQuizList */,
+				CEF80DF826F76CB2004F259C /* VocaQuiz */,
+			);
+			path = VocaQuiz;
+			sourceTree = "<group>";
+		};
+		CEADEC80277F30F30010F49A /* FileClient */ = {
+			isa = PBXGroup;
+			children = (
+				CE6DF2AC277883D10034B2BE /* FileClient.swift */,
+				CE6DF2B227788AC80034B2BE /* FileClientEffects.swift */,
+				CE6DF2B527788AD00034B2BE /* Live.swift */,
+				CE6DF2B827788AD50034B2BE /* Mocks.swift */,
+			);
+			path = FileClient;
 			sourceTree = "<group>";
 		};
 		CEF80DEA26F7629C004F259C /* CommonViews */ = {
@@ -576,7 +608,7 @@
 				512CF2FD276B91AD00706071 /* VocaGroupSectionView.swift in Sources */,
 				CE6DF2B0277888850034B2BE /* Combine+.swift in Sources */,
 				CE6DF2B627788AD00034B2BE /* Live.swift in Sources */,
-				51554D7126F380BA0030BB2D /* MainView.swift in Sources */,
+				51554D7126F380BA0030BB2D /* VocaAppView.swift in Sources */,
 				512CF311276E18C700706071 /* AddVocaModel.swift in Sources */,
 				CEF80DEF26F764B2004F259C /* ContainerView.swift in Sources */,
 				512CF2F7276B842200706071 /* VocaCore.swift in Sources */,
@@ -617,7 +649,7 @@
 				512CF301276B964800706071 /* QuickAddVocaCore.swift in Sources */,
 				512CF321276EA75D00706071 /* AddVocaItemCore.swift in Sources */,
 				512CF2FE276B91AD00706071 /* VocaGroupSectionView.swift in Sources */,
-				51554D7226F380BA0030BB2D /* MainView.swift in Sources */,
+				51554D7226F380BA0030BB2D /* VocaAppView.swift in Sources */,
 				CE6DF29B2776C8F30034B2BE /* VocaAppCore.swift in Sources */,
 				512CF312276E18C700706071 /* AddVocaModel.swift in Sources */,
 				CEF80DF026F764B2004F259C /* ContainerView.swift in Sources */,

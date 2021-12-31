@@ -72,13 +72,13 @@ struct VocaListView: View {
                     then: QuickAddVocaView.init(store:)
                 )
                 IfLetStore(
-                                    self.store.scope(
-                                        state: \.newGroup,
-                                        action: VocaListAction.newGroup
-                                    ),
-                                    then: { store in
-                                        NewGroupView(store: store)
-                                    }
+                    self.store.scope(
+                        state: \.newGroup,
+                        action: VocaListAction.newGroup
+                    ),
+                    then: { store in
+                        NewGroupView(store: store)
+                    }
                 )
             }
             
@@ -91,6 +91,7 @@ struct VocaListView: View {
                             }
                             Spacer()
                         }
+                        .transition(.move(edge: .bottom))
                     }
                 }
             }

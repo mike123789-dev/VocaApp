@@ -11,7 +11,7 @@ import SwiftUI
 struct VocaApp: App {
     var body: some Scene {
         WindowGroup {
-            MainView(
+            VocaAppView(
                 store: .init(
                     initialState: .init(),
                     reducer: vocaAppReducer,
@@ -28,6 +28,3 @@ struct VocaApp: App {
         }
     }
 }
-
-//      backgroundQueue: DispatchQueue(label: "background-queue").eraseToAnyScheduler(),
-
