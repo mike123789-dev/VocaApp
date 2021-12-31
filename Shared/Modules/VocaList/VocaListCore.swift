@@ -150,6 +150,12 @@ let vocaListReducer = Reducer<VocaListState, VocaListAction, VocaListEnvironment
                 state.quickAddVoca = .init(id: environment.uuid(), group: group)
                 return .none
                 
+            case .delete, .move, .voca(id: _, action: .favoriteToggled), .voca(id: _, action: .delete):
+                return environment.fileClient
+                    .saveVocaList(vocaList: .init(groups: state.groups.elements), on: environment.backgroundQueue)
+                    .receive(on: environment.mainQueue)
+                    .fireAndForget()
+
             default:
                 return .none
             }

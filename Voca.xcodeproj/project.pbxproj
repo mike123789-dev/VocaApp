@@ -380,11 +380,11 @@
 		CEADEC7E277F30930010F49A /* VocaList */ = {
 			isa = PBXGroup;
 			children = (
+				512CF2F0276B839F00706071 /* VocaListCore.swift */,
+				51554D3426F37DAD0030BB2D /* VocaListView.swift */,
 				512CF322276EAE4000706071 /* AddVocaList */,
 				CE6DF2C12778A2EC0034B2BE /* NewGroup */,
 				512CF323276EAE4700706071 /* QuickAddVoca */,
-				512CF2F0276B839F00706071 /* VocaListCore.swift */,
-				51554D3426F37DAD0030BB2D /* VocaListView.swift */,
 			);
 			path = VocaList;
 			sourceTree = "<group>";
