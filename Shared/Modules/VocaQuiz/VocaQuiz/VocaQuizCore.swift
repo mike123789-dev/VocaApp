@@ -14,10 +14,14 @@ struct VocaQuizState: Equatable {
     let title: String
     
     var currentIndex = 0
+    var currentVoca: Voca?
     var vocas: [Voca]
     var rightVocas: [Voca] = []
     var wrongVocas: [Voca] = []
     
+    @BindableState var willSwipeLeft: Bool = false
+    @BindableState var willSwipeRight: Bool = false
+
     var totalCount: Int {
         vocas.count
     }
@@ -33,16 +37,20 @@ struct VocaQuizState: Equatable {
     init(group: VocaGroup) {
         self.title = group.title
         self.vocas = group.items.elements
+        self.currentVoca = group.items.elements.first
     }
 }
 
 // MARK: - Action
-enum VocaQuizAction: Equatable {
+enum VocaQuizAction: BindableAction, Equatable {
     enum SwipeDirection {
         case left
         case right
     }
+    case willSwipe(direction: SwipeDirection)
     case swipe(_ voca: Voca, direction: SwipeDirection)
+    case didTapResetButton
+    case binding(BindingAction<VocaQuizState>)
 }
 
 // MARK: - Environment
@@ -53,6 +61,15 @@ struct VocaQuizEnvironment {
 // MARK: - Reducer
 let vocaQuizReducer = Reducer<VocaQuizState, VocaQuizAction, VocaQuizEnvironment> { state, action, environment in
     switch action {
+    case let .willSwipe(direction: direction):
+        switch direction {
+        case .left:
+            state.willSwipeLeft = true
+        case .right:
+            state.willSwipeRight = true
+        }
+        return .none
+        
     case let .swipe(voca, direction: direction):
         switch direction {
         case .left:
@@ -61,5 +78,9 @@ let vocaQuizReducer = Reducer<VocaQuizState, VocaQuizAction, VocaQuizEnvironment
             state.rightVocas.append(voca)
         }
         return .none
+    
+    default:
+        return .none
     }
 }
+.binding()

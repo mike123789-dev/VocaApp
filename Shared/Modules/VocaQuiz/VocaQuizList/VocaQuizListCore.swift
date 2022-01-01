@@ -71,8 +71,6 @@ let vocaQuizListReducer =
                 state.alert = .init(title: .init("단어가 1개 이상인 경우에만 시험을 볼 수 있습니다"),
                                     message: nil,
                                     dismissButton: .default(TextState("확인"), action: .send(.alertDismissed)))
-
-                print("최소 한개는 있어합니다")
             }
             return .none
             

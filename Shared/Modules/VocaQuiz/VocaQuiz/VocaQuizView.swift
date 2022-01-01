@@ -15,24 +15,70 @@ struct VocaQuizView: View {
     var body: some View {
         WithViewStore(store) { viewStore in
             VStack {
-                VStack {
-                    Text("\(viewStore.currentIndex + 1)/\(viewStore.totalCount)")
-                    //                    ProgressView(value: viewStore.currentIndex + 1, total: viewStore.totalCount)
-                }
+                QuizProgressHeader(currentCount: viewStore.currentIndex + 1,
+                                   totalCount: viewStore.totalCount)
                 Spacer()
-                VocaCardView(store: .init(initialState: .sample, reducer: vocaReducer, environment: .init(mainQueue: .main)))
-                Spacer()
-                HStack {
-                    Text("\(viewStore.wrongCount)")
-                    Spacer()
-                    Button("재시작") {
-                        
+                ZStack {
+                    ForEach(viewStore.vocas.prefix(3)) { voca in
+                        SwipableCardView(
+                            content: {
+                                VocaCardView(store: .init(initialState: voca, reducer: vocaReducer, environment: .init(mainQueue: .main)))
+                            },
+                            willSwipeRight: viewStore.binding(\.$willSwipeRight),
+                            willSwipeLeft: viewStore.binding(\.$willSwipeLeft),
+                            didSwipeRight: nil,
+                            didSwipeLeft: nil
+                        )
                     }
-                    Spacer()
-                    Text("\(viewStore.wrongCount)")
                 }
-                .padding()
+                Spacer()
+                QuizFooter(viewStore: viewStore)
             }
+        }
+    }
+    
+    struct QuizProgressHeader: View {
+        let currentCount: Int
+        let totalCount: Int
+        var body: some View {
+            VStack {
+                Text("\(currentCount)/\(totalCount)")
+                ProgressView(value: Double(currentCount), total: Double(totalCount))
+                    .frame(width: 150)
+            }
+        }
+    }
+    
+    struct QuizFooter: View {
+        @ObservedObject var viewStore: ViewStore<VocaQuizState, VocaQuizAction>
+        var body: some View {
+            HStack {
+                ScoreView(title: "\(viewStore.wrongCount)", color: .red, isFocused: viewStore.willSwipeLeft)
+                Spacer()
+                ScoreView(title: "\(viewStore.rightCount)", color: .green, isFocused: viewStore.willSwipeRight)
+            }
+            .overlay(alignment: .center) {
+                Button("재시작") {
+                    viewStore.send(.didTapResetButton)
+                }
+            }
+            .padding(.vertical)
+        }
+    }
+    
+    struct ScoreView: View {
+        let title: String
+        let color: Color
+        let isFocused: Bool
+        var body: some View {
+            ZStack {
+                Rectangle()
+                    .fill(color)
+                    .frame(width: isFocused ? 70 : 50, height: 30, alignment: .leading)
+                Text(title)
+                    .foregroundColor(.white)
+            }
+            .animation(.interactiveSpring(), value: self.isFocused)
         }
     }
 }
