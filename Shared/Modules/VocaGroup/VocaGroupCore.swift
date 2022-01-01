@@ -29,6 +29,7 @@ struct VocaGroup: Equatable, Identifiable, Codable {
 
 extension VocaGroup {
     static let test1 = Self(id: .init(), title: "test folder1", items: [.favorite, .highlighted, .sample])
+    static let quizTest = Self(id: .init(), title: "quiz", items: [.first, .second, .third, .forth, .sample, .favorite])
 }
 
 enum VocaGroupAction: Equatable {

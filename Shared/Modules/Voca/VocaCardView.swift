@@ -17,39 +17,38 @@ struct VocaCardView: View {
     
     var body: some View {
         WithViewStore(store) { viewStore in
-            CardView {
-                VStack {
-                    Text(viewStore.word)
-                        .font(.system(size: 30))
-                    if viewStore.isShowingMeaning {
-                        Text(viewStore.meaning)
-                            .foregroundColor(.secondary)
-                    }
+            VStack {
+                Text(viewStore.word)
+                    .font(.system(size: 30))
+                if viewStore.isShowingMeaning {
+                    Text(viewStore.meaning)
+                        .foregroundColor(.secondary)
                 }
-                .padding(50)
-                .frame(minWidth: 300, minHeight: 350)
-                .onTapGesture {
-                    viewStore.send(.tapped, animation: .easeInOut)
-                }
-                .overlay(
-                    Button(
-                        action: {
-                            viewStore.send(.favoriteToggled)
-                        },
-                        label: {
-                            Image(systemName: viewStore.isFavorite ? "star.fill" : "star")
-                                .foregroundColor(Color.yellow)
-                                .padding(6)
-                        }),
-                    alignment: .topTrailing
-                )
-                .overlay(
-                    HStack {
-                        
-                    },
-                    alignment: .bottom
-                )
             }
+            .padding(50)
+            .frame(minWidth: 300, minHeight: 350)
+            .contentShape(Rectangle())
+            .overlay(
+                Button(
+                    action: {
+                        viewStore.send(.favoriteToggled)
+                    },
+                    label: {
+                        Image(systemName: viewStore.isFavorite ? "star.fill" : "star")
+                            .foregroundColor(Color.yellow)
+                            .padding(6)
+                    }),
+                alignment: .topTrailing
+            )
+            .onTapGesture {
+                viewStore.send(.tapped, animation: .easeInOut)
+            }
+            .overlay(
+                HStack {
+                    
+                },
+                alignment: .bottom
+            )
         }
     }
 }

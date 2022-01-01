@@ -13,6 +13,7 @@ struct VocaQuizListState: Equatable {
     var favoriteGroups: IdentifiedArrayOf<VocaGroup> = []
     var groups: IdentifiedArrayOf<VocaGroup> = []
     var selection: Identified<VocaGroup.ID, VocaQuizState>?
+    var alert: AlertState<VocaQuizListAction>?
 }
 
 extension VocaQuizListState {
@@ -35,6 +36,7 @@ extension VocaQuizListState {
 enum VocaQuizListAction: Equatable {
     case quiz(VocaQuizAction)
     case setNavigation(selection: UUID?)
+    case alertDismissed
 }
 
 // MARK: - Environment
@@ -45,7 +47,11 @@ struct VocaQuizListEnvironment {
 // MARK: - Reducer
 let vocaQuizListReducer =
     vocaQuizReducer
-    .pullback(state: \Identified.value, action: .self, environment: { $0 })
+    .pullback(
+        state: \Identified.value,
+        action: .self,
+        environment: { $0 }
+    )
     .optional()
     .pullback(
       state: \VocaQuizListState.selection,
@@ -59,12 +65,23 @@ let vocaQuizListReducer =
             
         case let .setNavigation(selection: .some(id)):
             guard let selectedGroup = state.groups[id: id] else { return .none }
-            state.selection = .init(.init(group: selectedGroup), id: id)
+            if selectedGroup.totalCount > 0 {
+                state.selection = .init(.init(group: selectedGroup), id: id)
+            } else {
+                state.alert = .init(title: .init("단어가 1개 이상인 경우에만 시험을 볼 수 있습니다"),
+                                    message: nil,
+                                    dismissButton: .default(TextState("확인"), action: .send(.alertDismissed)))
+            }
             return .none
             
         case .setNavigation(selection: .none):
             state.selection = nil
             return .none
+            
+        case .alertDismissed:
+            state.alert = nil
+            return .none
+            
         }
     }
 )

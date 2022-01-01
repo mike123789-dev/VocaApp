@@ -16,38 +16,39 @@ struct VocaQuizListView: View {
             NavigationView {
                 ScrollView {
                     VStack {
-                        VStack {
-                            Text("즐겨찾기")
-                            TabView {
-                                ForEach(viewStore.favoriteGroups) { item in
-                                    NavigationLink(
-                                        destination: IfLetStore(
-                                            self.store.scope(
-                                                state: \.selection?.value,
-                                                action: VocaQuizListAction.quiz
-                                            ),
-                                            then: { store in
-                                                VocaQuizView(store: store)
-                                            }),
-                                        tag: item.id,
-                                        selection: viewStore.binding(
-                                          get: \.selection?.id,
-                                          send: VocaQuizListAction.setNavigation(selection:)
-                                        ),
-                                        label: {
-                                            CardView {
-                                                VocaGroupItemView(group: item)
-                                            }
-                                        })
-                                        .buttonStyle(PlainButtonStyle())
-                                }
-                                .padding(20)
-                            }
-                            .frame(height: 200)
-                            .tabViewStyle(PageTabViewStyle())
-                            .padding(.bottom)                    }
+//                        VStack {
+//                            Text("즐겨찾기")
+//                            TabView {
+//                                ForEach(viewStore.favoriteGroups) { item in
+//                                    NavigationLink(
+//                                        destination: IfLetStore(
+//                                            self.store.scope(
+//                                                state: \.selection?.value,
+//                                                action: VocaQuizListAction.quiz
+//                                            ),
+//                                            then: { store in
+//                                                VocaQuizView(store: store)
+//                                            }),
+//                                        tag: item.id,
+//                                        selection: viewStore.binding(
+//                                          get: \.selection?.id,
+//                                          send: VocaQuizListAction.setNavigation(selection:)
+//                                        ),
+//                                        label: {
+//                                            CardView {
+//                                                VocaGroupItemView(group: item)
+//                                            }
+//                                        })
+//                                        .buttonStyle(PlainButtonStyle())
+//                                }
+//                                .padding(20)
+//                            }
+//                            .frame(height: 200)
+//                            .tabViewStyle(PageTabViewStyle())
+//                            .padding(.bottom)
+//                        }
                         VStack(spacing: 10) {
-                            Text("폴더")
+//                            Text("폴더")
                             VStack(spacing: 20) {
                                 ForEach(viewStore.groups) { item in
                                     NavigationLink(
@@ -68,6 +69,7 @@ struct VocaQuizListView: View {
                                             CardView {
                                                 VocaGroupItemView(group: item)
                                             }
+                                            .padding(.horizontal)
                                         })
                                         .buttonStyle(PlainButtonStyle())
                                 }
@@ -79,9 +81,10 @@ struct VocaQuizListView: View {
                 .navigationBarTitle("단어 시험")
                 .frame(maxWidth: .infinity)
             }
-            .onAppear {
-                print("VocaList Appeared")
-            }
+            .alert(
+              self.store.scope(state: \.alert),
+              dismiss: .alertDismissed
+            )
         }
     }
 }

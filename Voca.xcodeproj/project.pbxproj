@@ -73,6 +73,8 @@
 		CE6DF2BD27789B790034B2BE /* NewGroupCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6DF2BB27789B790034B2BE /* NewGroupCore.swift */; };
 		CE6DF2BF27789B8C0034B2BE /* NewGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6DF2BE27789B8C0034B2BE /* NewGroupView.swift */; };
 		CE6DF2C027789B8C0034B2BE /* NewGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6DF2BE27789B8C0034B2BE /* NewGroupView.swift */; };
+		CEC71DD82780045400955E69 /* PartialSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC71DD72780045400955E69 /* PartialSheet.swift */; };
+		CEC71DD92780045400955E69 /* PartialSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC71DD72780045400955E69 /* PartialSheet.swift */; };
 		CEF80DEC26F762A7004F259C /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF80DEB26F762A7004F259C /* CardView.swift */; };
 		CEF80DED26F762A7004F259C /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF80DEB26F762A7004F259C /* CardView.swift */; };
 		CEF80DEF26F764B2004F259C /* ContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF80DEE26F764B2004F259C /* ContainerView.swift */; };
@@ -148,6 +150,7 @@
 		CE6DF2B827788AD50034B2BE /* Mocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mocks.swift; sourceTree = "<group>"; };
 		CE6DF2BB27789B790034B2BE /* NewGroupCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGroupCore.swift; sourceTree = "<group>"; };
 		CE6DF2BE27789B8C0034B2BE /* NewGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGroupView.swift; sourceTree = "<group>"; };
+		CEC71DD72780045400955E69 /* PartialSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartialSheet.swift; sourceTree = "<group>"; };
 		CEF80DEB26F762A7004F259C /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		CEF80DEE26F764B2004F259C /* ContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerView.swift; sourceTree = "<group>"; };
 		CEF80DF126F764E1004F259C /* AddVocaListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddVocaListView.swift; sourceTree = "<group>"; };
@@ -415,6 +418,7 @@
 				CEF80DEB26F762A7004F259C /* CardView.swift */,
 				512CF30C276C4C6800706071 /* SwipableCardView.swift */,
 				CEF80DEE26F764B2004F259C /* ContainerView.swift */,
+				CEC71DD72780045400955E69 /* PartialSheet.swift */,
 			);
 			path = CommonViews;
 			sourceTree = "<group>";
@@ -608,6 +612,7 @@
 				512CF314276E1A6700706071 /* VocaQuizListCore.swift in Sources */,
 				51554D7426F381B10030BB2D /* VocaQuizListView.swift in Sources */,
 				CE6DF297277681FA0034B2BE /* SimpleFocusView.swift in Sources */,
+				CEC71DD82780045400955E69 /* PartialSheet.swift in Sources */,
 				512CF2F1276B839F00706071 /* VocaListCore.swift in Sources */,
 				CEF80DF526F76C7C004F259C /* VocaQuizView.swift in Sources */,
 				512CF317276E1BD100706071 /* VocaGroupItemView.swift in Sources */,
@@ -660,6 +665,7 @@
 				512CF31B276E209B00706071 /* VocaQuizCore.swift in Sources */,
 				512CF326276EB7CD00706071 /* AddVocaListCore.swift in Sources */,
 				512CF30E276C4C6900706071 /* SwipableCardView.swift in Sources */,
+				CEC71DD92780045400955E69 /* PartialSheet.swift in Sources */,
 				512CF304276B96C100706071 /* QuickAddVocaView.swift in Sources */,
 				51554D5D26F37DAF0030BB2D /* VocaApp.swift in Sources */,
 				CE6DF2A0277881F10034B2BE /* VocaList.swift in Sources */,

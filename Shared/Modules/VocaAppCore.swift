@@ -17,6 +17,7 @@ struct VocaAppState: Equatable {
     
     init() {
     }
+    
 }
 
 // MARK: - Action
@@ -58,7 +59,6 @@ let vocaAppReducer = Reducer<VocaAppState, VocaAppAction, VocaAppCoreEnvironment
             
         case let .vocaListLoaded(list):
             guard let list = try? list.get() else { return .none }
-            print("😍 Voca List Loaded!")
             state.vocaList = .init(list: list)
             state.vocaQuizList = .init(list: list)
             return .none

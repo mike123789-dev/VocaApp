@@ -14,12 +14,23 @@ struct VocaQuizState: Equatable {
     let title: String
     
     var currentIndex = 0
-    var vocas: [Voca]
+    var currentVoca: Voca?
+    var originalVocas: [Voca]
+    var remainingVocas: [Voca]
     var rightVocas: [Voca] = []
     var wrongVocas: [Voca] = []
     
-    var totalCount: Int {
-        vocas.count
+    @BindableState var willSwipeLeft: Bool = false
+    @BindableState var willSwipeRight: Bool = false
+
+    var visableVocas: [Voca] {
+        remainingVocas.prefix(3).reversed()
+    }
+    
+    var totalCount: Int
+    
+    var currentCount: Int {
+        totalCount - remainingVocas.count
     }
     
     var rightCount: Int {
@@ -32,17 +43,37 @@ struct VocaQuizState: Equatable {
     
     init(group: VocaGroup) {
         self.title = group.title
-        self.vocas = group.items.elements
+        self.totalCount = group.items.count
+        self.originalVocas = group.items.elements
+        self.remainingVocas = group.items.elements
+        self.currentVoca = group.items.elements.first
+    }
+    
+    mutating func restart() {
+        self.totalCount = originalVocas.count
+        self.remainingVocas = originalVocas
+        self.remainingVocas = originalVocas
+        self.currentVoca = originalVocas.first
+        self.rightVocas = []
+        self.wrongVocas = []
+    }
+    
+    mutating func resetWillSwipe() {
+        self.willSwipeLeft = false
+        self.willSwipeRight = false
     }
 }
 
 // MARK: - Action
-enum VocaQuizAction: Equatable {
+enum VocaQuizAction: BindableAction, Equatable {
     enum SwipeDirection {
         case left
         case right
     }
+    case willSwipe(direction: SwipeDirection)
     case swipe(_ voca: Voca, direction: SwipeDirection)
+    case didTapResetButton
+    case binding(BindingAction<VocaQuizState>)
 }
 
 // MARK: - Environment
@@ -53,7 +84,18 @@ struct VocaQuizEnvironment {
 // MARK: - Reducer
 let vocaQuizReducer = Reducer<VocaQuizState, VocaQuizAction, VocaQuizEnvironment> { state, action, environment in
     switch action {
+    case let .willSwipe(direction: direction):
+        switch direction {
+        case .left:
+            state.willSwipeLeft = true
+        case .right:
+            state.willSwipeRight = true
+        }
+        return .none
+        
     case let .swipe(voca, direction: direction):
+        state.remainingVocas.removeFirst()
+        state.resetWillSwipe()
         switch direction {
         case .left:
             state.wrongVocas.append(voca)
@@ -61,5 +103,14 @@ let vocaQuizReducer = Reducer<VocaQuizState, VocaQuizAction, VocaQuizEnvironment
             state.rightVocas.append(voca)
         }
         return .none
+    
+        
+    case .didTapResetButton:
+        state.restart()
+        return .none
+        
+    default:
+        return .none
     }
 }
+.binding()
