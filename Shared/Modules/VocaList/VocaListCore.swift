@@ -166,3 +166,4 @@ let vocaListReducer = Reducer<VocaListState, VocaListAction, VocaListEnvironment
     }
     
 )
+    .debugActions("LIST", actionFormat: .labelsOnly, environment: { _ in .init() })

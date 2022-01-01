@@ -9,7 +9,7 @@
 import ComposableArchitecture
 
 // MARK: - State
-struct Voca: Equatable, Identifiable, Codable {
+struct Voca: Equatable, Identifiable, Codable, Hashable {
     let id: UUID
     var word: String
     var meaning: String
@@ -40,6 +40,10 @@ extension Voca {
     static let sample = Voca(id: .init(), word: "Sample", meaning: "샘플")
     static let favorite = Voca(id: .init(), word: "Favorited", meaning: "푸", isFavorite: true, isShowingMeaning: false)
     static let highlighted = Voca(id: .init(), word: "Highlighted", meaning: "하이라이트", isFavorite: true, isShowingMeaning: true)
+    static let first = Voca(id: .init(), word: "1", meaning: "1")
+    static let second = Voca(id: .init(), word: "2", meaning: "2")
+    static let third = Voca(id: .init(), word: "3", meaning: "3")
+    static let forth = Voca(id: .init(), word: "4", meaning: "4")
 }
 
 extension Voca {

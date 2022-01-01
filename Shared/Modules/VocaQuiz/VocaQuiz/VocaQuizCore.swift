@@ -15,15 +15,22 @@ struct VocaQuizState: Equatable {
     
     var currentIndex = 0
     var currentVoca: Voca?
-    var vocas: [Voca]
+    var originalVocas: [Voca]
+    var remainingVocas: [Voca]
     var rightVocas: [Voca] = []
     var wrongVocas: [Voca] = []
     
     @BindableState var willSwipeLeft: Bool = false
     @BindableState var willSwipeRight: Bool = false
 
-    var totalCount: Int {
-        vocas.count
+    var visableVocas: [Voca] {
+        remainingVocas.prefix(3).reversed()
+    }
+    
+    var totalCount: Int
+    
+    var currentCount: Int {
+        totalCount - remainingVocas.count
     }
     
     var rightCount: Int {
@@ -36,8 +43,24 @@ struct VocaQuizState: Equatable {
     
     init(group: VocaGroup) {
         self.title = group.title
-        self.vocas = group.items.elements
+        self.totalCount = group.items.count
+        self.originalVocas = group.items.elements
+        self.remainingVocas = group.items.elements
         self.currentVoca = group.items.elements.first
+    }
+    
+    mutating func restart() {
+        self.totalCount = originalVocas.count
+        self.remainingVocas = originalVocas
+        self.remainingVocas = originalVocas
+        self.currentVoca = originalVocas.first
+        self.rightVocas = []
+        self.wrongVocas = []
+    }
+    
+    mutating func resetWillSwipe() {
+        self.willSwipeLeft = false
+        self.willSwipeRight = false
     }
 }
 
@@ -71,6 +94,8 @@ let vocaQuizReducer = Reducer<VocaQuizState, VocaQuizAction, VocaQuizEnvironment
         return .none
         
     case let .swipe(voca, direction: direction):
+        state.remainingVocas.removeFirst()
+        state.resetWillSwipe()
         switch direction {
         case .left:
             state.wrongVocas.append(voca)
@@ -79,6 +104,11 @@ let vocaQuizReducer = Reducer<VocaQuizState, VocaQuizAction, VocaQuizEnvironment
         }
         return .none
     
+        
+    case .didTapResetButton:
+        state.restart()
+        return .none
+        
     default:
         return .none
     }
