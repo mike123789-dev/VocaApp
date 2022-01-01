@@ -41,6 +41,10 @@ struct VocaQuizState: Equatable {
         wrongVocas.count
     }
     
+    var didFinish: Bool {
+        return remainingVocas.isEmpty
+    }
+    
     init(group: VocaGroup) {
         self.title = group.title
         self.totalCount = group.items.count
