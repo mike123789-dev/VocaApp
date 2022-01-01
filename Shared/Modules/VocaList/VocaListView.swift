@@ -21,87 +21,95 @@ struct VocaListView: View {
         var isSheetPresented = false
         var isNavigationActive = false
         var editMode: EditMode = .inactive
+        var query: String
         init(state: VocaListState) {
             self.editMode = state.editMode
             self.isNavigationActive = state.isNavigationActive
             self.isSheetPresented = state.isSheetPresented
+            self.query = state.query
         }
     }
-    
     var body: some View {
         NavigationView {
-            List {
-                ForEachStore(
-                    self.store.scope(state: \.groups, action: VocaListAction.group(id:action:)),
-                    content: VocaGroupSectionView.init(store:)
-                )
-            }
-            .navigationBarItems(
-                leading:
-                    EditButton()
-                ,
-                trailing:
-                    HStack {
-                        NavigationLink(destination: IfLetStore(self.store.scope(state: \.addVocaList,
-                                                                                action: VocaListAction.addVocaList),
-                                                               then: { store in
-                                                                AddVocaListView(store: store)
-                                                               }),
-                                       isActive: viewStore.binding(
-                                        get: \.isNavigationActive,
-                                        send: VocaListAction.setNavigation(isActive:)
-                                       )
-                        ) {
-                            Button("단어 추가") {
-                                viewStore.send(.setNavigation(isActive: true))
-                            }
-                        }
-                    })
-            .listStyle(InsetGroupedListStyle())
-            .sheet(
-                isPresented: viewStore.binding(
-                    get: \.isSheetPresented,
-                    send: VocaListAction.setSheet(isPresented:)
-                )
-            ) {
-                IfLetStore(
-                    self.store.scope(
-                        state: \.quickAddVoca,
-                        action: VocaListAction.quickAddVoca
-                    ),
-                    then: QuickAddVocaView.init(store:)
-                )
-                IfLetStore(
-                    self.store.scope(
-                        state: \.newGroup,
-                        action: VocaListAction.newGroup
-                    ),
-                    then: { store in
-                        NewGroupView(store: store)
-                    }
-                )
-            }
-            
-            .toolbar {
-                ToolbarItem(placement: .bottomBar) {
-                    if viewStore.editMode == .active {
-                        HStack() {
-                            Button("폴더 추가") {
-                                viewStore.send(.addGroupButonTapped)
-                            }
-                            Spacer()
-                        }
-                        .transition(.move(edge: .bottom))
-                    }
+            if viewStore.query.isEmpty {
+                List {
+                    ForEachStore(
+                        self.store.scope(state: \.groups, action: VocaListAction.group(id:action:)),
+                        content: VocaGroupSectionView.init(store:)
+                    )
+                }
+                .navigationBarTitle("단어장")
+            } else {
+                List {
+                    SimpleGroupSectionView(store: self.store.scope(state: \.searchedVocaGroup, action: VocaListAction.searchVocaGroup))
                 }
             }
-            .environment(
-                \.editMode,
-                 self.viewStore.binding(get: \.editMode, send: VocaListAction.editModeChanged)
-            )
-            
-            .navigationBarTitle("단어장")
         }
+        .searchable(text: viewStore.binding(get: \.query,
+                                                send: VocaListAction.queryChanged))
+        .navigationBarItems(
+            leading:
+                EditButton()
+            ,
+            trailing:
+                HStack {
+                    NavigationLink(destination: IfLetStore(self.store.scope(
+                        state: \.addVocaList,
+                        action: VocaListAction.addVocaList),
+                                                           then: { store in
+                        AddVocaListView(store: store)
+                    }),
+                                   isActive: viewStore.binding(
+                                    get: \.isNavigationActive,
+                                    send: VocaListAction.setNavigation(isActive:)
+                                   )
+                    ) {
+                        Button("단어 추가") {
+                            viewStore.send(.setNavigation(isActive: true))
+                        }
+                    }
+                })
+        .listStyle(InsetGroupedListStyle())
+        .sheet(
+            isPresented: viewStore.binding(
+                get: \.isSheetPresented,
+                send: VocaListAction.setSheet(isPresented:)
+            )
+        ) {
+            IfLetStore(
+                self.store.scope(
+                    state: \.quickAddVoca,
+                    action: VocaListAction.quickAddVoca
+                ),
+                then: QuickAddVocaView.init(store:)
+            )
+            IfLetStore(
+                self.store.scope(
+                    state: \.newGroup,
+                    action: VocaListAction.newGroup
+                ),
+                then: { store in
+                    NewGroupView(store: store)
+                }
+            )
+        }
+        .toolbar {
+            ToolbarItem(placement: .bottomBar) {
+                if viewStore.editMode == .active {
+                    HStack() {
+                        Button("폴더 추가") {
+                            viewStore.send(.addGroupButonTapped)
+                        }
+                        Spacer()
+                    }
+                    .transition(.move(edge: .bottom))
+                }
+            }
+        }
+        .environment(
+            \.editMode,
+             self.viewStore.binding(get: \.editMode, send: VocaListAction.editModeChanged)
+        )
         .onAppear {
             print("VocaList Appeared")
         }

@@ -13,13 +13,13 @@ struct VocaAppView: View {
     var body: some View {
         WithViewStore(store.stateless) { viewStore in
             TabView {
-                VocaQuizListView(store: self.store.scope(state: \.vocaQuizList, action: VocaAppAction.vocaQuizList))
-                    .tabItem {
-                        Label("시험", systemImage: "square.stack.fill")
-                    }
                 VocaListView(store: self.store.scope(state: \.vocaList, action: VocaAppAction.vocaList))
                     .tabItem {
                         Label("단어", systemImage: "list.dash")
+                    }
+                VocaQuizListView(store: self.store.scope(state: \.vocaQuizList, action: VocaAppAction.vocaQuizList))
+                    .tabItem {
+                        Label("시험", systemImage: "square.stack.fill")
                     }
             }
             .onAppear {
