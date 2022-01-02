@@ -8,7 +8,7 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct VocaGroup: Equatable, Identifiable, Codable {
+struct VocaGroup: Equatable, Identifiable, Codable, Hashable {
     let id: UUID
     var title: String
     var items: IdentifiedArrayOf<Voca> = []
@@ -25,11 +25,20 @@ struct VocaGroup: Equatable, Identifiable, Codable {
     mutating func add(_ voca: Voca) {
         items.insert(voca, at: 0)
     }
+    
+    mutating func addMutliple(_ vocas: [Voca]) {
+        var elements = items.elements
+        elements.insert(contentsOf: vocas, at: 0)
+        self.items = .init(uniqueElements: elements)
+    }
+
 }
 
 extension VocaGroup {
     static let test1 = Self(id: .init(), title: "test folder1", items: [.favorite, .highlighted, .sample])
     static let quizTest = Self(id: .init(), title: "quiz", items: [.first, .second, .third, .forth, .sample, .favorite])
+    static let onlyOne = Self(id: .init(), title: "onlyOne", items: [.first])
+    static let empty = Self(id: .init(), title: "empty", items: [])
 }
 
 enum VocaGroupAction: Equatable {

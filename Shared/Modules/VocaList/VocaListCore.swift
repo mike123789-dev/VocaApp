@@ -16,6 +16,8 @@ struct VocaListState: Equatable {
     var quickAddVoca: QuickAddVocaState?
     var addVocaList: AddVocaListState?
     var newGroup: NewGroupState?
+    var query = ""
+    var searchedVocaGroup: VocaGroup = .init(id: .init(), title: "")
     var isSheetPresented = false
     var isNavigationActive = false
 }
@@ -31,6 +33,8 @@ extension VocaListState {
 enum VocaListAction: Equatable {
     case editModeChanged(EditMode)
     case move(IndexSet, Int)
+    case queryChanged(String)
+    case searchVocaGroup(VocaGroupAction)
     case group(id: VocaGroup.ID, action: VocaGroupAction)
     case quickAddVoca(QuickAddVocaAction)
     case addVocaList(AddVocaListAction)
@@ -59,6 +63,12 @@ let vocaListReducer = Reducer<VocaListState, VocaListAction, VocaListEnvironment
         action: /VocaListAction.group(id:action:),
         environment: { .init(mainQueue: $0.mainQueue, uuid: $0.uuid) }
     ),
+    vocaGroupReducer
+        .pullback(
+            state: \.searchedVocaGroup,
+            action: /VocaListAction.searchVocaGroup,
+            environment: { .init(mainQueue: $0.mainQueue, uuid: $0.uuid) }
+        ),
     newGroupReducer.optional()
         .pullback(
             state: \.newGroup,
@@ -85,6 +95,13 @@ let vocaListReducer = Reducer<VocaListState, VocaListAction, VocaListEnvironment
             
         case let .move(source, destination):
             //      state.todos.move(fromOffsets: source, toOffset: destination)
+            return .none
+            
+        case let .queryChanged(query):
+            state.query = query
+            let searchedVocas = state.groups
+                .flatMap { $0.items.filter{ $0.word.contains(query) || $0.meaning.contains(query) } }
+            state.searchedVocaGroup.items = .init(uniqueElements: searchedVocas)
             return .none
             
         case .addGroupButonTapped:
@@ -125,6 +142,22 @@ let vocaListReducer = Reducer<VocaListState, VocaListAction, VocaListEnvironment
             default:
                 return .none
             }
+            
+        case .addVocaList(.confirmButtonTapped):
+            guard let addVocaList = state.addVocaList,
+                  let index = state.groups.index(id: addVocaList.currentGroup.id),
+                  addVocaList.isAllValidate else { return .none }
+            let vocas = addVocaList.addVocas.map { Voca(id: environment.uuid(), addVoca: $0.addVoca) }
+            
+            var updatedGroup = state.groups[index]
+            updatedGroup.addMutliple(vocas)
+            state.groups.update(updatedGroup, at: index)
+            state.isNavigationActive = false
+            state.addVocaList = nil
+            return environment.fileClient
+                .saveVocaList(vocaList: .init(groups: state.groups.elements), on: environment.backgroundQueue)
+                .receive(on: environment.mainQueue)
+                .fireAndForget()
             
         case .setSheet(isPresented: false):
             state.isSheetPresented = false
@@ -167,3 +200,4 @@ let vocaListReducer = Reducer<VocaListState, VocaListAction, VocaListEnvironment
     
 )
     .debugActions("LIST", actionFormat: .labelsOnly, environment: { _ in .init() })
+    
