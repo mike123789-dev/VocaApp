@@ -38,7 +38,42 @@ struct VocaListView: View {
                         content: VocaGroupSectionView.init(store:)
                     )
                 }
+//                .toolbar {
+//                    ToolbarItem(placement: .bottomBar) {
+//                        if viewStore.editMode == .active {
+//                            HStack() {
+//                                Button("폴더 추가") {
+//                                    viewStore.send(.addGroupButonTapped)
+//                                }
+//                                Spacer()
+//                            }
+//                            .transition(.move(edge: .bottom))
+//                        } else {
+//                            Button("hello") {}
+//                        }
+//                    }
+//                }
                 .navigationBarTitle("단어장")
+                .navigationBarItems(
+                    leading: EditButton(),
+                    trailing: HStack {
+                        NavigationLink(destination: IfLetStore(self.store.scope(
+                            state: \.addVocaList,
+                            action: VocaListAction.addVocaList),
+                                                               then: { store in
+                            AddVocaListView(store: store)
+                        }),
+                                       isActive: viewStore.binding(
+                                        get: \.isNavigationActive,
+                                        send: VocaListAction.setNavigation(isActive:)
+                                       )
+                        ) {
+                            Button("단어 추가") {
+                                viewStore.send(.setNavigation(isActive: true))
+                            }
+                        }
+                    }
+                )
             } else {
                 List {
                     SimpleGroupSectionView(store: self.store.scope(state: \.searchedVocaGroup, action: VocaListAction.searchVocaGroup))
@@ -47,28 +82,6 @@ struct VocaListView: View {
         }
         .searchable(text: viewStore.binding(get: \.query,
                                                 send: VocaListAction.queryChanged))
-        .navigationBarItems(
-            leading:
-                EditButton()
-            ,
-            trailing:
-                HStack {
-                    NavigationLink(destination: IfLetStore(self.store.scope(
-                        state: \.addVocaList,
-                        action: VocaListAction.addVocaList),
-                                                           then: { store in
-                        AddVocaListView(store: store)
-                    }),
-                                   isActive: viewStore.binding(
-                                    get: \.isNavigationActive,
-                                    send: VocaListAction.setNavigation(isActive:)
-                                   )
-                    ) {
-                        Button("단어 추가") {
-                            viewStore.send(.setNavigation(isActive: true))
-                        }
-                    }
-                })
         .listStyle(InsetGroupedListStyle())
         .sheet(
             isPresented: viewStore.binding(
@@ -93,23 +106,6 @@ struct VocaListView: View {
                 }
             )
         }
-        .toolbar {
-            ToolbarItem(placement: .bottomBar) {
-                if viewStore.editMode == .active {
-                    HStack() {
-                        Button("폴더 추가") {
-                            viewStore.send(.addGroupButonTapped)
-                        }
-                        Spacer()
-                    }
-                    .transition(.move(edge: .bottom))
-                }
-            }
-        }
-        .environment(
-            \.editMode,
-             self.viewStore.binding(get: \.editMode, send: VocaListAction.editModeChanged)
-        )
         .onAppear {
             print("VocaList Appeared")
         }

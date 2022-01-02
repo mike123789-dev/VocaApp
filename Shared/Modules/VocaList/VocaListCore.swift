@@ -143,6 +143,22 @@ let vocaListReducer = Reducer<VocaListState, VocaListAction, VocaListEnvironment
                 return .none
             }
             
+        case .addVocaList(.confirmButtonTapped):
+            guard let addVocaList = state.addVocaList,
+                  let index = state.groups.index(id: addVocaList.currentGroup.id),
+                  addVocaList.isAllValidate else { return .none }
+            let vocas = addVocaList.addVocas.map { Voca(id: environment.uuid(), addVoca: $0.addVoca) }
+            
+            var updatedGroup = state.groups[index]
+            updatedGroup.addMutliple(vocas)
+            state.groups.update(updatedGroup, at: index)
+            state.isNavigationActive = false
+            state.addVocaList = nil
+            return environment.fileClient
+                .saveVocaList(vocaList: .init(groups: state.groups.elements), on: environment.backgroundQueue)
+                .receive(on: environment.mainQueue)
+                .fireAndForget()
+            
         case .setSheet(isPresented: false):
             state.isSheetPresented = false
             state.newGroup = nil

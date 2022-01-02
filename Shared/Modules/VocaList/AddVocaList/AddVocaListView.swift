@@ -14,28 +14,62 @@ struct AddVocaListView: View {
     
     var body: some View {
         WithViewStore(store) { viewStore in
-            ScrollView {
-                ForEachStore(
-                    self.store.scope(state: \.addVocas, action: AddVocaListAction.addVoca(id:action:)),
-                    content: AddVocaItemView.init(store:)
-                )
-                .onDelete { viewStore.send(.delete($0)) }
-                Button("추가") {
-                    viewStore.send(.addButtonTapped, animation: .default)
+            VStack {
+                Form {
+                    Picker(
+                      "폴더 선택",
+                      selection: viewStore.binding(get: \.currentGroup,
+                                                   send: AddVocaListAction.selectGroup)
+                    ) {
+                        ForEach(viewStore.groups) { group in
+                            Text(group.title)
+                              .tag(group)
+                        }
+                    }
                 }
+                .frame(height: 130)
+                ScrollView {
+                    ForEachStore(
+                        self.store.scope(state: \.addVocas, action: AddVocaListAction.addVoca(id:action:)),
+                        content: AddVocaItemView.init(store:)
+                    )
+                    .onDelete { viewStore.send(.delete($0)) }
+                    
+                    Button {
+                        viewStore.send(.addButtonTapped, animation: .default)
+                    } label: {
+                        Image(systemName: "plus.circle")
+                    }
+                }
+                .frame(maxHeight: .infinity)
+
             }
             .toolbar {
-                ToolbarItem(placement: .bottomBar) {
-                    // 3.
+                ToolbarItemGroup(placement: .navigationBarTrailing) {
+                    Button("완료") {
+                        viewStore.send(.confirmButtonTapped)
+                    }
+                }
+
+                ToolbarItemGroup(placement: .bottomBar) {
                     HStack {
+                        Button("First") {
+                            print("Pressed")
+                        }
+
                         Spacer()
-                        Button("카메라") {
-                            
+
+                        Button("Second") {
+                            print("Pressed")
                         }
                     }
                 }
             }
             .navigationBarTitle("단어 추가", displayMode: .inline)
+            .alert(
+                self.store.scope(state: \.alert),
+                dismiss: .alertDismissed
+            )
         }
     }
     
@@ -44,9 +78,7 @@ struct AddVocaListView: View {
 struct AddVocaView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            AddVocaListView(store: .init(initialState: .init(groups: [], addVocas: .init(uniqueElements: [.init(id: .init())])), reducer: addVocaListReducer, environment: .init(uuid: {
-                .init()
-            })))
+            AddVocaListView(store: .init(initialState: .mock, reducer: .empty, environment: ()))
         }
     }
 }

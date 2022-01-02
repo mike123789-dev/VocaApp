@@ -52,6 +52,12 @@ extension Voca {
         self.word = word
         self.meaning = meaning
     }
+    
+    init(id: UUID, addVoca: AddVocaModel) {
+        self.id = id
+        self.word = addVoca.word
+        self.meaning = addVoca.meaning
+    }
 }
 
 // MARK: - Action
