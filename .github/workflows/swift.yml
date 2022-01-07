@@ -1,0 +1,23 @@
+name: Swift
+
+on:
+  push:
+    branches:
+    - main
+    - feature/*
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v2
+#     - name: Build
+#       run: swift build -v
+    - name: Run tests
+      run: |
+        pod install --repo-update --clean-install --project-directory=thereto-ios/
+        xcodebuild test -workspace thereto-ios/thereto-ios.xcworkspace -scheme thereto-ios -destination 'platform=iOS Simulator,name=iPhone 11 Pro,OS=15.2'
