@@ -38,7 +38,6 @@
 		512CF321276EA75D00706071 /* AddVocaItemCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512CF31F276EA75D00706071 /* AddVocaItemCore.swift */; };
 		512CF325276EB7CD00706071 /* AddVocaListCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512CF324276EB7CD00706071 /* AddVocaListCore.swift */; };
 		512CF326276EB7CD00706071 /* AddVocaListCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512CF324276EB7CD00706071 /* AddVocaListCore.swift */; };
-		51554D4F26F37DAF0030BB2D /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51554D4E26F37DAF0030BB2D /* Tests_iOS.swift */; };
 		51554D5A26F37DAF0030BB2D /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51554D5926F37DAF0030BB2D /* Tests_macOS.swift */; };
 		51554D5C26F37DAF0030BB2D /* VocaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51554D3326F37DAD0030BB2D /* VocaApp.swift */; };
 		51554D5D26F37DAF0030BB2D /* VocaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51554D3326F37DAD0030BB2D /* VocaApp.swift */; };
@@ -73,6 +72,7 @@
 		CE6DF2BD27789B790034B2BE /* NewGroupCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6DF2BB27789B790034B2BE /* NewGroupCore.swift */; };
 		CE6DF2BF27789B8C0034B2BE /* NewGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6DF2BE27789B8C0034B2BE /* NewGroupView.swift */; };
 		CE6DF2C027789B8C0034B2BE /* NewGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6DF2BE27789B8C0034B2BE /* NewGroupView.swift */; };
+		CEC228BE2785CA9D0014313D /* VocaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC228BD2785CA9D0014313D /* VocaTests.swift */; };
 		CEC71DD82780045400955E69 /* PartialSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC71DD72780045400955E69 /* PartialSheet.swift */; };
 		CEC71DD92780045400955E69 /* PartialSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC71DD72780045400955E69 /* PartialSheet.swift */; };
 		CEC71DE127806F4400955E69 /* CornerRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC71DE027806F4400955E69 /* CornerRadius.swift */; };
@@ -100,19 +100,19 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		51554D4B26F37DAF0030BB2D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 51554D2E26F37DAD0030BB2D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 51554D3926F37DAF0030BB2D;
-			remoteInfo = "Voca (iOS)";
-		};
 		51554D5626F37DAF0030BB2D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 51554D2E26F37DAD0030BB2D /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 51554D4126F37DAF0030BB2D;
 			remoteInfo = "Voca (macOS)";
+		};
+		CEC228BF2785CA9D0014313D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 51554D2E26F37DAD0030BB2D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 51554D3926F37DAF0030BB2D;
+			remoteInfo = "Voca (iOS)";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -140,9 +140,6 @@
 		51554D4226F37DAF0030BB2D /* Voca.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Voca.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		51554D4426F37DAF0030BB2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		51554D4526F37DAF0030BB2D /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
-		51554D4A26F37DAF0030BB2D /* Tests iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		51554D4E26F37DAF0030BB2D /* Tests_iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_iOS.swift; sourceTree = "<group>"; };
-		51554D5026F37DAF0030BB2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		51554D5526F37DAF0030BB2D /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		51554D5926F37DAF0030BB2D /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		51554D5B26F37DAF0030BB2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -160,6 +157,8 @@
 		CE6DF2B827788AD50034B2BE /* Mocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mocks.swift; sourceTree = "<group>"; };
 		CE6DF2BB27789B790034B2BE /* NewGroupCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGroupCore.swift; sourceTree = "<group>"; };
 		CE6DF2BE27789B8C0034B2BE /* NewGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGroupView.swift; sourceTree = "<group>"; };
+		CEC228BB2785CA9D0014313D /* VocaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VocaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CEC228BD2785CA9D0014313D /* VocaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocaTests.swift; sourceTree = "<group>"; };
 		CEC71DD72780045400955E69 /* PartialSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartialSheet.swift; sourceTree = "<group>"; };
 		CEC71DE027806F4400955E69 /* CornerRadius.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CornerRadius.swift; sourceTree = "<group>"; };
 		CEC71DE427807F0C00955E69 /* CardStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardStackView.swift; sourceTree = "<group>"; };
@@ -190,14 +189,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		51554D4726F37DAF0030BB2D /* Frameworks */ = {
+		51554D5226F37DAF0030BB2D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		51554D5226F37DAF0030BB2D /* Frameworks */ = {
+		CEC228B82785CA9D0014313D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -281,8 +280,8 @@
 				51554D3226F37DAD0030BB2D /* Shared */,
 				51554D3C26F37DAF0030BB2D /* iOS */,
 				51554D4326F37DAF0030BB2D /* macOS */,
-				51554D4D26F37DAF0030BB2D /* Tests iOS */,
 				51554D5826F37DAF0030BB2D /* Tests macOS */,
+				CEC228BC2785CA9D0014313D /* VocaTests */,
 				51554D3B26F37DAF0030BB2D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -307,8 +306,8 @@
 			children = (
 				51554D3A26F37DAF0030BB2D /* Voca.app */,
 				51554D4226F37DAF0030BB2D /* Voca.app */,
-				51554D4A26F37DAF0030BB2D /* Tests iOS.xctest */,
 				51554D5526F37DAF0030BB2D /* Tests macOS.xctest */,
+				CEC228BB2785CA9D0014313D /* VocaTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -328,15 +327,6 @@
 				51554D4526F37DAF0030BB2D /* macOS.entitlements */,
 			);
 			path = macOS;
-			sourceTree = "<group>";
-		};
-		51554D4D26F37DAF0030BB2D /* Tests iOS */ = {
-			isa = PBXGroup;
-			children = (
-				51554D4E26F37DAF0030BB2D /* Tests_iOS.swift */,
-				51554D5026F37DAF0030BB2D /* Info.plist */,
-			);
-			path = "Tests iOS";
 			sourceTree = "<group>";
 		};
 		51554D5826F37DAF0030BB2D /* Tests macOS */ = {
@@ -428,6 +418,14 @@
 			path = FileClient;
 			sourceTree = "<group>";
 		};
+		CEC228BC2785CA9D0014313D /* VocaTests */ = {
+			isa = PBXGroup;
+			children = (
+				CEC228BD2785CA9D0014313D /* VocaTests.swift */,
+			);
+			path = VocaTests;
+			sourceTree = "<group>";
+		};
 		CEC71DE327807EFA00955E69 /* SubViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -500,24 +498,6 @@
 			productReference = 51554D4226F37DAF0030BB2D /* Voca.app */;
 			productType = "com.apple.product-type.application";
 		};
-		51554D4926F37DAF0030BB2D /* Tests iOS */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 51554D6A26F37DAF0030BB2D /* Build configuration list for PBXNativeTarget "Tests iOS" */;
-			buildPhases = (
-				51554D4626F37DAF0030BB2D /* Sources */,
-				51554D4726F37DAF0030BB2D /* Frameworks */,
-				51554D4826F37DAF0030BB2D /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				51554D4C26F37DAF0030BB2D /* PBXTargetDependency */,
-			);
-			name = "Tests iOS";
-			productName = "Tests iOS";
-			productReference = 51554D4A26F37DAF0030BB2D /* Tests iOS.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 		51554D5426F37DAF0030BB2D /* Tests macOS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 51554D6D26F37DAF0030BB2D /* Build configuration list for PBXNativeTarget "Tests macOS" */;
@@ -536,13 +516,31 @@
 			productReference = 51554D5526F37DAF0030BB2D /* Tests macOS.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		CEC228BA2785CA9D0014313D /* VocaTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CEC228C12785CA9D0014313D /* Build configuration list for PBXNativeTarget "VocaTests" */;
+			buildPhases = (
+				CEC228B72785CA9D0014313D /* Sources */,
+				CEC228B82785CA9D0014313D /* Frameworks */,
+				CEC228B92785CA9D0014313D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CEC228C02785CA9D0014313D /* PBXTargetDependency */,
+			);
+			name = VocaTests;
+			productName = VocaTests;
+			productReference = CEC228BB2785CA9D0014313D /* VocaTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		51554D2E26F37DAD0030BB2D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1250;
+				LastSwiftUpdateCheck = 1320;
 				LastUpgradeCheck = 1250;
 				TargetAttributes = {
 					51554D3926F37DAF0030BB2D = {
@@ -551,13 +549,13 @@
 					51554D4126F37DAF0030BB2D = {
 						CreatedOnToolsVersion = 12.5.1;
 					};
-					51554D4926F37DAF0030BB2D = {
-						CreatedOnToolsVersion = 12.5.1;
-						TestTargetID = 51554D3926F37DAF0030BB2D;
-					};
 					51554D5426F37DAF0030BB2D = {
 						CreatedOnToolsVersion = 12.5.1;
 						TestTargetID = 51554D4126F37DAF0030BB2D;
+					};
+					CEC228BA2785CA9D0014313D = {
+						CreatedOnToolsVersion = 13.2.1;
+						TestTargetID = 51554D3926F37DAF0030BB2D;
 					};
 				};
 			};
@@ -579,8 +577,8 @@
 			targets = (
 				51554D3926F37DAF0030BB2D /* Voca (iOS) */,
 				51554D4126F37DAF0030BB2D /* Voca (macOS) */,
-				51554D4926F37DAF0030BB2D /* Tests iOS */,
 				51554D5426F37DAF0030BB2D /* Tests macOS */,
+				CEC228BA2785CA9D0014313D /* VocaTests */,
 			);
 		};
 /* End PBXProject section */
@@ -602,14 +600,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		51554D4826F37DAF0030BB2D /* Resources */ = {
+		51554D5326F37DAF0030BB2D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		51554D5326F37DAF0030BB2D /* Resources */ = {
+		CEC228B92785CA9D0014313D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -718,14 +716,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		51554D4626F37DAF0030BB2D /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				51554D4F26F37DAF0030BB2D /* Tests_iOS.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		51554D5126F37DAF0030BB2D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -734,18 +724,26 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CEC228B72785CA9D0014313D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CEC228BE2785CA9D0014313D /* VocaTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		51554D4C26F37DAF0030BB2D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 51554D3926F37DAF0030BB2D /* Voca (iOS) */;
-			targetProxy = 51554D4B26F37DAF0030BB2D /* PBXContainerItemProxy */;
-		};
 		51554D5726F37DAF0030BB2D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 51554D4126F37DAF0030BB2D /* Voca (macOS) */;
 			targetProxy = 51554D5626F37DAF0030BB2D /* PBXContainerItemProxy */;
+		};
+		CEC228C02785CA9D0014313D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 51554D3926F37DAF0030BB2D /* Voca (iOS) */;
+			targetProxy = CEC228BF2785CA9D0014313D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -801,6 +799,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -854,6 +853,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -954,51 +954,6 @@
 			};
 			name = Release;
 		};
-		51554D6B26F37DAF0030BB2D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = FUH54G34CU;
-				INFOPLIST_FILE = "Tests iOS/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.byungmin.Tests-iOS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "Voca (iOS)";
-			};
-			name = Debug;
-		};
-		51554D6C26F37DAF0030BB2D /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = FUH54G34CU;
-				INFOPLIST_FILE = "Tests iOS/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.byungmin.Tests-iOS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "Voca (iOS)";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
 		51554D6E26F37DAF0030BB2D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1043,6 +998,49 @@
 			};
 			name = Release;
 		};
+		CEC228C22785CA9D0014313D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FUH54G34CU;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = byungmin.VocaTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Voca.app/Voca";
+			};
+			name = Debug;
+		};
+		CEC228C32785CA9D0014313D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FUH54G34CU;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = byungmin.VocaTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Voca.app/Voca";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1073,20 +1071,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		51554D6A26F37DAF0030BB2D /* Build configuration list for PBXNativeTarget "Tests iOS" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				51554D6B26F37DAF0030BB2D /* Debug */,
-				51554D6C26F37DAF0030BB2D /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		51554D6D26F37DAF0030BB2D /* Build configuration list for PBXNativeTarget "Tests macOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				51554D6E26F37DAF0030BB2D /* Debug */,
 				51554D6F26F37DAF0030BB2D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CEC228C12785CA9D0014313D /* Build configuration list for PBXNativeTarget "VocaTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CEC228C22785CA9D0014313D /* Debug */,
+				CEC228C32785CA9D0014313D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
