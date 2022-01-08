@@ -115,6 +115,7 @@ let vocaListReducer = Reducer<VocaListState, VocaListAction, VocaListEnvironment
             state.groups.append(newGroup)
             state.isSheetPresented = false
             state.editMode = .inactive
+            state.newGroup = nil
             return environment.fileClient
                 .saveVocaList(vocaList: .init(groups: state.groups.elements), on: environment.backgroundQueue)
                 .receive(on: environment.mainQueue)
