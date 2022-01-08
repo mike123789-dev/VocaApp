@@ -72,7 +72,10 @@
 		CE6DF2BD27789B790034B2BE /* NewGroupCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6DF2BB27789B790034B2BE /* NewGroupCore.swift */; };
 		CE6DF2BF27789B8C0034B2BE /* NewGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6DF2BE27789B8C0034B2BE /* NewGroupView.swift */; };
 		CE6DF2C027789B8C0034B2BE /* NewGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6DF2BE27789B8C0034B2BE /* NewGroupView.swift */; };
+		CEB46173278935AB0091E2A2 /* ErrorBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB46172278935AB0091E2A2 /* ErrorBadge.swift */; };
+		CEB46174278935AB0091E2A2 /* ErrorBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB46172278935AB0091E2A2 /* ErrorBadge.swift */; };
 		CEC228BE2785CA9D0014313D /* VocaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC228BD2785CA9D0014313D /* VocaTests.swift */; };
+		CEC6B3E3278927F900CC93C2 /* VocaQuizTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC6B3E2278927F900CC93C2 /* VocaQuizTests.swift */; };
 		CEC71DD82780045400955E69 /* PartialSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC71DD72780045400955E69 /* PartialSheet.swift */; };
 		CEC71DD92780045400955E69 /* PartialSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC71DD72780045400955E69 /* PartialSheet.swift */; };
 		CEC71DE127806F4400955E69 /* CornerRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC71DE027806F4400955E69 /* CornerRadius.swift */; };
@@ -108,6 +111,13 @@
 			remoteInfo = "Voca (macOS)";
 		};
 		CEC228BF2785CA9D0014313D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 51554D2E26F37DAD0030BB2D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 51554D3926F37DAF0030BB2D;
+			remoteInfo = "Voca (iOS)";
+		};
+		CEC6B3E4278927F900CC93C2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 51554D2E26F37DAD0030BB2D /* Project object */;
 			proxyType = 1;
@@ -157,8 +167,11 @@
 		CE6DF2B827788AD50034B2BE /* Mocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mocks.swift; sourceTree = "<group>"; };
 		CE6DF2BB27789B790034B2BE /* NewGroupCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGroupCore.swift; sourceTree = "<group>"; };
 		CE6DF2BE27789B8C0034B2BE /* NewGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGroupView.swift; sourceTree = "<group>"; };
+		CEB46172278935AB0091E2A2 /* ErrorBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorBadge.swift; sourceTree = "<group>"; };
 		CEC228BB2785CA9D0014313D /* VocaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VocaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEC228BD2785CA9D0014313D /* VocaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocaTests.swift; sourceTree = "<group>"; };
+		CEC6B3E0278927F900CC93C2 /* VocaQuizTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VocaQuizTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CEC6B3E2278927F900CC93C2 /* VocaQuizTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocaQuizTests.swift; sourceTree = "<group>"; };
 		CEC71DD72780045400955E69 /* PartialSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartialSheet.swift; sourceTree = "<group>"; };
 		CEC71DE027806F4400955E69 /* CornerRadius.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CornerRadius.swift; sourceTree = "<group>"; };
 		CEC71DE427807F0C00955E69 /* CardStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardStackView.swift; sourceTree = "<group>"; };
@@ -197,6 +210,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		CEC228B82785CA9D0014313D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CEC6B3DD278927F900CC93C2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -282,6 +302,7 @@
 				51554D4326F37DAF0030BB2D /* macOS */,
 				51554D5826F37DAF0030BB2D /* Tests macOS */,
 				CEC228BC2785CA9D0014313D /* VocaTests */,
+				CEC6B3E1278927F900CC93C2 /* VocaQuizTests */,
 				51554D3B26F37DAF0030BB2D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -308,6 +329,7 @@
 				51554D4226F37DAF0030BB2D /* Voca.app */,
 				51554D5526F37DAF0030BB2D /* Tests macOS.xctest */,
 				CEC228BB2785CA9D0014313D /* VocaTests.xctest */,
+				CEC6B3E0278927F900CC93C2 /* VocaQuizTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -426,6 +448,14 @@
 			path = VocaTests;
 			sourceTree = "<group>";
 		};
+		CEC6B3E1278927F900CC93C2 /* VocaQuizTests */ = {
+			isa = PBXGroup;
+			children = (
+				CEC6B3E2278927F900CC93C2 /* VocaQuizTests.swift */,
+			);
+			path = VocaQuizTests;
+			sourceTree = "<group>";
+		};
 		CEC71DE327807EFA00955E69 /* SubViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -444,6 +474,7 @@
 				512CF30C276C4C6800706071 /* SwipableCardView.swift */,
 				CEF80DEE26F764B2004F259C /* ContainerView.swift */,
 				CEC71DD72780045400955E69 /* PartialSheet.swift */,
+				CEB46172278935AB0091E2A2 /* ErrorBadge.swift */,
 			);
 			path = CommonViews;
 			sourceTree = "<group>";
@@ -534,6 +565,24 @@
 			productReference = CEC228BB2785CA9D0014313D /* VocaTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		CEC6B3DF278927F900CC93C2 /* VocaQuizTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CEC6B3E6278927F900CC93C2 /* Build configuration list for PBXNativeTarget "VocaQuizTests" */;
+			buildPhases = (
+				CEC6B3DC278927F900CC93C2 /* Sources */,
+				CEC6B3DD278927F900CC93C2 /* Frameworks */,
+				CEC6B3DE278927F900CC93C2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CEC6B3E5278927F900CC93C2 /* PBXTargetDependency */,
+			);
+			name = VocaQuizTests;
+			productName = VocaQuizTests;
+			productReference = CEC6B3E0278927F900CC93C2 /* VocaQuizTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -554,6 +603,10 @@
 						TestTargetID = 51554D4126F37DAF0030BB2D;
 					};
 					CEC228BA2785CA9D0014313D = {
+						CreatedOnToolsVersion = 13.2.1;
+						TestTargetID = 51554D3926F37DAF0030BB2D;
+					};
+					CEC6B3DF278927F900CC93C2 = {
 						CreatedOnToolsVersion = 13.2.1;
 						TestTargetID = 51554D3926F37DAF0030BB2D;
 					};
@@ -579,6 +632,7 @@
 				51554D4126F37DAF0030BB2D /* Voca (macOS) */,
 				51554D5426F37DAF0030BB2D /* Tests macOS */,
 				CEC228BA2785CA9D0014313D /* VocaTests */,
+				CEC6B3DF278927F900CC93C2 /* VocaQuizTests */,
 			);
 		};
 /* End PBXProject section */
@@ -614,6 +668,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CEC6B3DE278927F900CC93C2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -630,6 +691,7 @@
 				512CF320276EA75D00706071 /* AddVocaItemCore.swift in Sources */,
 				512CF2FD276B91AD00706071 /* VocaGroupSectionView.swift in Sources */,
 				CE6DF2B0277888850034B2BE /* Combine+.swift in Sources */,
+				CEB46173278935AB0091E2A2 /* ErrorBadge.swift in Sources */,
 				CE6DF2B627788AD00034B2BE /* Live.swift in Sources */,
 				51554D7126F380BA0030BB2D /* VocaAppView.swift in Sources */,
 				512CF311276E18C700706071 /* AddVocaModel.swift in Sources */,
@@ -694,6 +756,7 @@
 				512CF318276E1BD100706071 /* VocaGroupItemView.swift in Sources */,
 				CE6DF2C027789B8C0034B2BE /* NewGroupView.swift in Sources */,
 				CE6DF2B427788AC80034B2BE /* FileClientEffects.swift in Sources */,
+				CEB46174278935AB0091E2A2 /* ErrorBadge.swift in Sources */,
 				CEF80DFE26F7721A004F259C /* VocaRowView.swift in Sources */,
 				CEC71DEC27807F3B00955E69 /* QuizFooter.swift in Sources */,
 				512CF31B276E209B00706071 /* VocaQuizCore.swift in Sources */,
@@ -732,6 +795,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CEC6B3DC278927F900CC93C2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CEC6B3E3278927F900CC93C2 /* VocaQuizTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -744,6 +815,11 @@
 			isa = PBXTargetDependency;
 			target = 51554D3926F37DAF0030BB2D /* Voca (iOS) */;
 			targetProxy = CEC228BF2785CA9D0014313D /* PBXContainerItemProxy */;
+		};
+		CEC6B3E5278927F900CC93C2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 51554D3926F37DAF0030BB2D /* Voca (iOS) */;
+			targetProxy = CEC6B3E4278927F900CC93C2 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -856,6 +932,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 			};
@@ -1041,6 +1118,49 @@
 			};
 			name = Release;
 		};
+		CEC6B3E7278927F900CC93C2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FUH54G34CU;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = byungmin.VocaQuizTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Voca.app/Voca";
+			};
+			name = Debug;
+		};
+		CEC6B3E8278927F900CC93C2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FUH54G34CU;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = byungmin.VocaQuizTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Voca.app/Voca";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1085,6 +1205,15 @@
 			buildConfigurations = (
 				CEC228C22785CA9D0014313D /* Debug */,
 				CEC228C32785CA9D0014313D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CEC6B3E6278927F900CC93C2 /* Build configuration list for PBXNativeTarget "VocaQuizTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CEC6B3E7278927F900CC93C2 /* Debug */,
+				CEC6B3E8278927F900CC93C2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

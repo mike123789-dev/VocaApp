@@ -23,26 +23,23 @@ struct AddVocaItemView: View {
             VStack(spacing: 6) {
                 HStack {
                     Group {
-                        if !viewStore.isValid {
-                            RoundedRectangle(cornerRadius: 4)
-                                .fill(Color.red)
-                                .padding(6)
-                        } else {
-                            Spacer()
-                        }
-                    }
-                    .frame(width: length, height: length, alignment: .center)
-                    Spacer()
-                    Group {
                         if viewStore.isFetching {
                             ProgressView()
                                 .scaleEffect(0.6)
+                                .frame(width: length, height: length, alignment: .center)
                         } else {
                             Spacer()
                         }
                     }
-                    .frame(width: length, height: length, alignment: .center)
-
+                    Spacer()
+                    Group {
+                        if !viewStore.isValid {
+                            ErrorBadge()
+                                .frame(width: length, height: length, alignment: .bottomTrailing)
+                        } else {
+                            Spacer()
+                        }
+                    }
                 }
                 TextField("단어", text: viewStore.binding(\.$addVoca.word))
                     .textFieldStyle(RoundedBorderTextFieldStyle())

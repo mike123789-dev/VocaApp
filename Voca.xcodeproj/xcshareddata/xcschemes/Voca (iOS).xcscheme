@@ -38,6 +38,16 @@
                ReferencedContainer = "container:Voca.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "CEC6B3DF278927F900CC93C2"
+               BuildableName = "VocaQuizTests.xctest"
+               BlueprintName = "VocaQuizTests"
+               ReferencedContainer = "container:Voca.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

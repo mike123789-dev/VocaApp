@@ -98,7 +98,7 @@ let vocaQuizReducer = Reducer<VocaQuizState, VocaQuizAction, VocaQuizEnvironment
         return .none
         
     case let .swipe(voca, direction: direction):
-        state.remainingVocas.removeFirst()
+        state.remainingVocas.removeAll(where: {$0.id == voca.id})
         state.resetWillSwipe()
         switch direction {
         case .left:
