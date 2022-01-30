@@ -14,7 +14,7 @@ enum Field: Hashable {
 }
 
 struct AddVocaItemView: View {
-    private let length = CGFloat(24)
+    private let length = CGFloat(20)
     let store: Store<AddVocaItemState, AddVocaItemAction>
     @FocusState private var focusedField: Field?
     
@@ -35,11 +35,11 @@ struct AddVocaItemView: View {
                     Group {
                         if !viewStore.isValid {
                             ErrorBadge()
-                                .frame(width: length, height: length, alignment: .bottomTrailing)
                         } else {
                             Spacer()
                         }
                     }
+                    .frame(width: length, height: length, alignment: .bottomTrailing)
                 }
                 TextField("단어", text: viewStore.binding(\.$addVoca.word))
                     .textFieldStyle(RoundedBorderTextFieldStyle())

@@ -35,7 +35,15 @@ struct QuickAddVocaView: View {
 }
 
 struct QuickAddVocaView_Previews: PreviewProvider {
+    
     static var previews: some View {
-        QuickAddVocaView(store: .init(initialState: .init(id: .init(), group: .init(id: .init(), title: "Sample Preview")), reducer: quickAddVocaReducer, environment: .init()))
+        
+        QuickAddVocaView(store: .init(initialState: .empty,
+                                      reducer: quickAddVocaReducer,
+                                      environment: .init()))
+
+        QuickAddVocaView(store: .init(initialState: .filled,
+                                      reducer: quickAddVocaReducer,
+                                      environment: .init()))
     }
 }

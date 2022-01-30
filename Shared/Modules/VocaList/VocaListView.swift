@@ -38,29 +38,29 @@ struct VocaListView: View {
                         content: VocaGroupSectionView.init(store:)
                     )
                 }
-//                .toolbar {
-//                    ToolbarItem(placement: .bottomBar) {
-//                        if viewStore.editMode == .active {
-//                            HStack() {
-//                                Button("폴더 추가") {
-//                                    viewStore.send(.addGroupButonTapped)
-//                                }
-//                                Spacer()
-//                            }
-//                            .transition(.move(edge: .bottom))
-//                        } else {
-//                            Button("hello") {}
-//                        }
-//                    }
-//                }
+                .toolbar {
+                    ToolbarItem(placement: .bottomBar) {
+                        HStack{
+                            Button {
+                                viewStore.send(.addGroupButonTapped)
+                            } label: {
+                                Image(systemName: "folder.badge.plus")
+                            }
+                            Spacer()
+                        }
+                    }
+                }
                 .navigationBarTitle("단어장")
                 .navigationBarItems(
-                    leading: EditButton(),
+                    leading: Button (viewStore.editMode == .active ? "완료" : "편집") {
+                        viewStore.send(.editModeChanged(viewStore.editMode == .active ? .inactive : .active))
+                    },
                     trailing: HStack {
-                        NavigationLink(destination: IfLetStore(self.store.scope(
+                        NavigationLink(
+                            destination: IfLetStore(self.store.scope(
                             state: \.addVocaList,
                             action: VocaListAction.addVocaList),
-                                                               then: { store in
+                                                    then: { store in
                             AddVocaListView(store: store)
                         }),
                                        isActive: viewStore.binding(
@@ -106,6 +106,10 @@ struct VocaListView: View {
                 }
             )
         }
+        .environment(
+            \.editMode,
+            self.viewStore.binding(get: \.editMode, send: VocaListAction.editModeChanged)
+        )
         .onAppear {
             print("VocaList Appeared")
         }

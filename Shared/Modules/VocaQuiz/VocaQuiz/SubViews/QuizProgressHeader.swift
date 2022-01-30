@@ -13,10 +13,15 @@ struct QuizProgressHeader: View {
     let totalCount: Int
     var body: some View {
         VStack {
-            Text("\(currentCount) / \(totalCount)")
+            HStack(spacing: 0) {
+                Text("\(currentCount)")
+                    .frame(alignment: .trailing)
+                Text(" / \(totalCount)")
+                    .frame(alignment: .leading)
+            }
+            .frame(width: 150, alignment: .center)
             ProgressView(value: Double(currentCount), total: Double(totalCount))
                 .frame(width: 150)
-                .animation(.interactiveSpring(), value: currentCount)
         }
     }
 }

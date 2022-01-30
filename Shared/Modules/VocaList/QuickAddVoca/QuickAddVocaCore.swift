@@ -31,6 +31,10 @@ extension QuickAddVocaState {
         self.addVoca = .init(id: id)
         self.group = group
     }
+    
+    static let empty = QuickAddVocaState(group: .init(id: .init(), title: "filled"), addVoca: .init(id: .init(), addVoca: .init(), isFetching: false))
+
+    static let filled = QuickAddVocaState(group: .init(id: .init(), title: "filled"), addVoca: .init(id: .init(), addVoca: .init(word: "word", meaning: "meaming"), isFetching: false))
 }
 
 // MARK: - Action

@@ -22,6 +22,7 @@ struct QuizResultView: View {
                                  wrongCount: viewStore.wrongCount,
                                  correctPercentage: correctPercentage)
             
+            
             VStack {
                 Button {
                     viewStore.send(.didTapResetButton, animation: .spring())
@@ -58,9 +59,15 @@ struct ResultStatisticsView: View {
                 Text("결과")
                     .font(.title)
                     .padding()
-                VStack(spacing: 20) {
-                    Text("✅ \(correctCount)")
-                    Text("❌ \(wrongCount)")
+                HStack {
+                    VStack(alignment: .leading, spacing: 20) {
+                        Text("✅")
+                        Text("❌")
+                    }
+                    VStack(alignment: .trailing, spacing: 20) {
+                        Text("\(correctCount)")
+                        Text("\(wrongCount)")
+                    }
                 }
                 
                 CirclePercentage(percentage: correctPercentage)
@@ -68,8 +75,8 @@ struct ResultStatisticsView: View {
                     .padding()
             }
             .font(.title3)
-            .padding(.horizontal, 50)
-            .padding(.vertical, 20)
+            .padding(.horizontal, 70)
+            .padding(.vertical, 30)
         }
     }
 }
