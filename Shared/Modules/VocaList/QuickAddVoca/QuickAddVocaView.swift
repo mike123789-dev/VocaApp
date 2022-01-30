@@ -27,6 +27,7 @@ struct QuickAddVocaView: View {
                     }
                     .disabled(!viewStore.isValid)
                 }
+                .buttonStyle(BorderedButtonStyle())
                 .padding()
             }
             .padding()

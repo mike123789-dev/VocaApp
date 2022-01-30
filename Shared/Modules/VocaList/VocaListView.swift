@@ -17,6 +17,7 @@ struct VocaListView: View {
         self.store = store
         self.viewStore = ViewStore(store.scope(state: { ViewState(state: $0) }))
     }
+    
     struct ViewState: Equatable {
         var isSheetPresented = false
         var isNavigationActive = false
@@ -29,6 +30,7 @@ struct VocaListView: View {
             self.query = state.query
         }
     }
+    
     var body: some View {
         NavigationView {
             if viewStore.query.isEmpty {
@@ -80,8 +82,12 @@ struct VocaListView: View {
                 }
             }
         }
-        .searchable(text: viewStore.binding(get: \.query,
-                                                send: VocaListAction.queryChanged))
+        .searchable(
+            text: viewStore.binding(
+                get: \.query,
+                send: VocaListAction.queryChanged
+            )
+        )
         .listStyle(InsetGroupedListStyle())
         .sheet(
             isPresented: viewStore.binding(
@@ -110,9 +116,6 @@ struct VocaListView: View {
             \.editMode,
             self.viewStore.binding(get: \.editMode, send: VocaListAction.editModeChanged)
         )
-        .onAppear {
-            print("VocaList Appeared")
-        }
     }
     
 }
@@ -121,29 +124,5 @@ struct VocaListView: View {
 struct VocaListView_Previews: PreviewProvider {
     static var previews: some View {
         VocaListView(store: .init(initialState: .init(groups: [.test1, .init(id: .init(), title: "empty")]), reducer: vocaListReducer, environment: .live))
-    }
-}
-
-struct SheetView: View {
-    @Environment(\.presentationMode) var presentationMode
-    var body: some View {
-        Button("Press to dismiss") {
-            presentationMode.wrappedValue.dismiss()
-        }
-        .font(.title)
-        .padding()
-    }
-}
-
-struct ContentView: View {
-    @State private var showingSheet = false
-    
-    var body: some View {
-        Button("Show Sheet") {
-            showingSheet.toggle()
-        }
-        .sheet(isPresented: $showingSheet) {
-            SheetView()
-        }
     }
 }
