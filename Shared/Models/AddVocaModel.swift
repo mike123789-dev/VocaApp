@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct AddVocaModel: Equatable {
+struct AddVocaModel: Equatable, Hashable {
     var word: String = ""
     var meaning: String = ""
 }

@@ -12,7 +12,8 @@ struct VocaListView: View {
     
     let store: Store<VocaListState, VocaListAction>
     @ObservedObject var viewStore: ViewStore<ViewState, VocaListAction>
-    
+    @Environment(\.editMode) var editMode
+
     init(store: Store<VocaListState, VocaListAction>) {
         self.store = store
         self.viewStore = ViewStore(store.scope(state: { ViewState(state: $0) }))

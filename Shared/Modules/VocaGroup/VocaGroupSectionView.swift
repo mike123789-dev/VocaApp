@@ -9,6 +9,7 @@ import SwiftUI
 import ComposableArchitecture
 
 struct VocaGroupSectionView: View {
+    
     let store: Store<VocaGroup, VocaGroupAction>
     @ObservedObject var viewStore: ViewStore<ViewState, VocaGroupAction>
     @Environment(\.editMode) var editMode
@@ -24,6 +25,7 @@ struct VocaGroupSectionView: View {
         init(state: VocaGroup) {
             self.title = state.title
             self.count = state.totalCount
+            self.isSheetPresented = state.isSheetPresented
         }
     }
     
@@ -60,6 +62,20 @@ struct VocaGroupSectionView: View {
                 .onMove { viewStore.send(.move($0, $1)) }
             }
         )
+        .sheet(
+            isPresented: viewStore.binding(
+                get: \.isSheetPresented,
+                send: VocaGroupAction.setSheet(isPresented:)
+            )
+        ) {
+            IfLetStore(
+                self.store.scope(
+                    state: \.modifyVoca,
+                    action: VocaGroupAction.modifyVoca
+                ),
+                then: ModifyVocaView.init(store:)
+            )
+        }
     }
 }
 

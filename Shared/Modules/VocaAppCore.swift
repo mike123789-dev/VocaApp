@@ -68,3 +68,4 @@ let vocaAppReducer = Reducer<VocaAppState, VocaAppAction, VocaAppCoreEnvironment
         }
     }
 )
+.debugActions("❤️", actionFormat: .labelsOnly, environment: { _ in .init() })

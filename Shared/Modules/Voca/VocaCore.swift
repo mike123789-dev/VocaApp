@@ -47,10 +47,11 @@ extension Voca {
 }
 
 extension Voca {
-    init(id: UUID, word: String, meaning: String) {
+    init(id: UUID, word: String, meaning: String, isFavorite: Bool = false) {
         self.id = id
         self.word = word
         self.meaning = meaning
+        self.isFavorite = isFavorite
     }
     
     init(id: UUID, addVoca: AddVocaModel) {

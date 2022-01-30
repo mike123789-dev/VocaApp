@@ -9,12 +9,19 @@
 import ComposableArchitecture
 
 // MARK: - State
-struct AddVocaItemState: Equatable, Identifiable {
+struct AddVocaItemState: Equatable, Identifiable, Hashable {
     let id: UUID
     @BindableState var addVoca = AddVocaModel()
     var isFetching = false
     var isValid: Bool {
         return addVoca.word.count > 0 && addVoca.meaning.count > 0
+    }
+}
+
+extension AddVocaItemState {
+    init(id: UUID, voca: Voca) {
+        self.id = id
+        self.addVoca = .init(word: voca.word, meaning: voca.meaning)
     }
 }
 
