@@ -49,7 +49,7 @@ struct VocaRowView: View {
                 view.listRowBackground(Color.yellow.opacity(0.2))
                     .transition(.opacity)
             })
-            .swipeActions(edge: .leading, allowsFullSwipe: false) {
+            .swipeActions(edge: .leading, allowsFullSwipe: true) {
                 Button {
                     viewStore.send(.favoriteToggled, animation: .easeInOut)
                 } label: {

@@ -14,7 +14,9 @@ struct VocaGroup: Equatable, Identifiable, Hashable {
     var items: IdentifiedArrayOf<Voca> = []
     var isFavorite = true
     var modifyVoca: ModifyVocaState? = nil
+    var modifyGroup: NewGroupState?
     var isSheetPresented = false
+    var isConfirmationDialogPresented = false
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -73,11 +75,17 @@ extension VocaGroup {
 
 enum VocaGroupAction: Equatable {
     case addVocaButtonTapped
-    case delete(IndexSet)
-    case move(IndexSet, Int)
+    case headerDeleteButtonTapped
+    case confimationDeleteButtonTapped
+    case modifyButtonTapped
+    case deleteVoca(IndexSet)
+    case moveVoca(IndexSet, Int)
     case voca(id: Voca.ID, action: VocaAction)
     case setSheet(isPresented: Bool)
+    case setConfirmationDialog(isPresented: Bool)
     case modifyVoca(ModifyVocaAction)
+    case modifyGroup(NewGroupAction)
+    case editModeChanged(EditMode)
 }
 
 struct VocaGroupEnvironment {
@@ -97,8 +105,23 @@ let vocaGroupReducer = Reducer<VocaGroup, VocaGroupAction, VocaGroupEnvironment>
             action: /VocaGroupAction.modifyVoca,
             environment: { _ in .init()}
         ),
+    newGroupReducer.optional()
+        .pullback(
+            state: \.modifyGroup,
+            action: /VocaGroupAction.modifyGroup,
+            environment: { _ in () }
+        ),
     Reducer { state, action, environment in
         switch action {
+        case .headerDeleteButtonTapped:
+            state.isConfirmationDialogPresented = true
+            return .none
+            
+        case .modifyButtonTapped:
+            state.isSheetPresented = true
+            state.modifyGroup = .init(title: state.title, mode: .modify)
+            return .none
+            
         case let .voca(id: id, action: .delete):
             state.items.remove(id: id)
             return .none
@@ -110,6 +133,13 @@ let vocaGroupReducer = Reducer<VocaGroup, VocaGroupAction, VocaGroupEnvironment>
             state.isSheetPresented = true
             return .none
             
+        case .modifyGroup(.confirmButtonTapped):
+            guard let modified = state.modifyGroup else { return .none }
+            state.title = modified.title
+            state.isSheetPresented = false
+            state.modifyGroup = nil
+            return .none
+
         case .modifyVoca(.confirmButtonTapped):
             guard let modified = state.modifyVoca else { return .none }
             let voca = Voca(id: modified.addVoca.id, word: modified.word, meaning: modified.meaning, isFavorite: modified.isFavorite)
@@ -118,12 +148,17 @@ let vocaGroupReducer = Reducer<VocaGroup, VocaGroupAction, VocaGroupEnvironment>
             state.isSheetPresented = false
             return .none
             
-        case .move(_, _):
+        case .moveVoca(_, _):
             return .none
             
-        case .setSheet(isPresented: false), .modifyVoca(.cancelButtonTapped):
+        case .setSheet(isPresented: false), .modifyVoca(.cancelButtonTapped), .modifyGroup(.cancelButtonTapped):
             state.isSheetPresented = false
             state.modifyVoca = nil
+            state.modifyGroup = nil
+            return .none
+            
+        case .setConfirmationDialog(isPresented: false):
+            state.isConfirmationDialogPresented = false
             return .none
 
         default:

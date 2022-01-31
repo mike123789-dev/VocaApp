@@ -22,10 +22,14 @@ struct VocaGroupSectionView: View {
         var title: String
         var count: Int
         var isSheetPresented = false
+        var isConfirmationDialogPresented: Bool
+//        var editMode: EditMode
         init(state: VocaGroup) {
             self.title = state.title
             self.count = state.totalCount
             self.isSheetPresented = state.isSheetPresented
+            self.isConfirmationDialogPresented = state.isConfirmationDialogPresented
+//            self.editMode = state.editMode
         }
     }
     
@@ -38,8 +42,10 @@ struct VocaGroupSectionView: View {
                     if editMode.wrappedValue.isEditing {
                         HStack {
                             Button("삭제") {
+                                viewStore.send(.headerDeleteButtonTapped)
                             }
                             Button("수정") {
+                                viewStore.send(.modifyButtonTapped)
                             }
                         }
                     } else {
@@ -59,7 +65,7 @@ struct VocaGroupSectionView: View {
                     self.store.scope(state: \.items, action: VocaGroupAction.voca(id:action:)),
                     content: VocaRowView.init(store:)
                 )
-                .onMove { viewStore.send(.move($0, $1)) }
+                .onMove { viewStore.send(.moveVoca($0, $1)) }
             }
         )
         .sheet(
@@ -75,7 +81,26 @@ struct VocaGroupSectionView: View {
                 ),
                 then: ModifyVocaView.init(store:)
             )
+            IfLetStore(
+                self.store.scope(
+                    state: \.modifyGroup,
+                    action: VocaGroupAction.modifyGroup
+                ),
+                then: NewGroupView.init(store:)
+            )
         }
+        .confirmationDialog(
+            "Are you sure?",
+             isPresented:  viewStore.binding(
+                get: \.isConfirmationDialogPresented,
+                send: VocaGroupAction.setConfirmationDialog(isPresented:)
+            )
+        ) {
+            Button("삭제", role: .destructive) {
+                viewStore.send(.confimationDeleteButtonTapped)
+            }
+        }
+
     }
 }
 
@@ -111,7 +136,7 @@ struct SimpleGroupSectionView: View {
                     self.store.scope(state: \.items, action: VocaGroupAction.voca(id:action:)),
                     content: VocaRowView.init(store:)
                 )
-                .onMove { viewStore.send(.move($0, $1)) }
+                .onMove { viewStore.send(.moveVoca($0, $1)) }
             }
         )
     }

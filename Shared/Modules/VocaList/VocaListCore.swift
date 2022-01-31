@@ -11,7 +11,6 @@ import ComposableArchitecture
 
 // MARK: - State
 struct VocaListState: Equatable {
-    var editMode: EditMode = .inactive
     var groups: IdentifiedArrayOf<VocaGroup> = []
     var quickAddVoca: QuickAddVocaState?
     var addVocaList: AddVocaListState?
@@ -20,6 +19,7 @@ struct VocaListState: Equatable {
     var searchedVocaGroup: VocaGroup = .init(id: .init(), title: "")
     var isSheetPresented = false
     var isNavigationActive = false
+    var editMode: EditMode = .inactive
 }
 
 extension VocaListState {
@@ -31,7 +31,6 @@ extension VocaListState {
 
 // MARK: - Action
 enum VocaListAction: Equatable {
-    case editModeChanged(EditMode)
     case move(IndexSet, Int)
     case queryChanged(String)
     case searchVocaGroup(VocaGroupAction)
@@ -42,6 +41,7 @@ enum VocaListAction: Equatable {
     case setNavigation(isActive: Bool)
     case newGroup(NewGroupAction)
     case addGroupButonTapped
+    case editModeChanged(EditMode)
 }
 
 // MARK: - Environment
@@ -106,7 +106,7 @@ let vocaListReducer = Reducer<VocaListState, VocaListAction, VocaListEnvironment
             
         case .addGroupButonTapped:
             state.isSheetPresented = true
-            state.newGroup = .init()
+            state.newGroup = .init(title: "")
             return .none
             
         case .newGroup(.confirmButtonTapped):
@@ -184,7 +184,11 @@ let vocaListReducer = Reducer<VocaListState, VocaListAction, VocaListEnvironment
                 state.quickAddVoca = .init(id: environment.uuid(), group: group)
                 return .none
                 
-            case .delete, .move, .modifyVoca(.confirmButtonTapped),
+            case .confimationDeleteButtonTapped:
+                state.groups.remove(id: id)
+                fallthrough
+                
+            case .deleteVoca, .moveVoca, .modifyVoca(.confirmButtonTapped), .modifyGroup(.confirmButtonTapped),
                     .voca(id: _, action: .favoriteToggled),
                     .voca(id: _, action: .delete):
                 return environment.fileClient
@@ -202,5 +206,5 @@ let vocaListReducer = Reducer<VocaListState, VocaListAction, VocaListEnvironment
     }
     
 )
-    .debugActions("LIST", actionFormat: .labelsOnly, environment: { _ in .init() })
+//    .debugActions("LIST", actionFormat: .labelsOnly, environment: { _ in .init() })
     

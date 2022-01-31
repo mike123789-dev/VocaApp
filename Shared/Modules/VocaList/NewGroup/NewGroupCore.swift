@@ -8,16 +8,28 @@
 
 import ComposableArchitecture
 
-struct NewGroupState: Equatable {
+struct NewGroupState: Equatable, Hashable {
+    enum Mode {
+        case new, modify
+    }
+    let mode: Mode
     @BindableState var title: String = ""
     var isValid: Bool {
         return !title.isEmpty
     }
 }
 
+extension NewGroupState {
+    init(title: String, mode: Mode = .new) {
+        self.title = title
+        self.mode = mode
+    }
+}
+
 enum NewGroupAction: BindableAction, Equatable {
     case binding(BindingAction<NewGroupState>)
     case confirmButtonTapped
+    case cancelButtonTapped
 }
 
 let newGroupReducer = Reducer<NewGroupState, NewGroupAction, Void> { state, action, _ in

@@ -21,10 +21,18 @@ struct NewGroupView: View {
                 TextField("", text: viewStore.binding(\.$title))
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .labelsHidden()
-                Button("추가") {
-                    viewStore.send(.confirmButtonTapped)
+                HStack {
+                    Button("취소") {
+                        viewStore.send(.cancelButtonTapped)
+                    }
+                    .keyboardShortcut(.cancelAction)
+                    Button(viewStore.mode == .new ? "추가" : "수정") {
+                        viewStore.send(.confirmButtonTapped)
+                    }
+                    .disabled(!viewStore.isValid)
+                    .keyboardShortcut(.defaultAction)
                 }
-                .disabled(!viewStore.isValid)
+                .buttonStyle(BorderedButtonStyle())
                 .padding()
             }
             .padding()
@@ -34,6 +42,6 @@ struct NewGroupView: View {
 
 struct NewGroupView_Previews: PreviewProvider {
     static var previews: some View {
-        NewGroupView(store: .init(initialState: .init(), reducer: newGroupReducer, environment: ()))
+        NewGroupView(store: .init(initialState: .init(title: "FOO"), reducer: newGroupReducer, environment: ()))
     }
 }
