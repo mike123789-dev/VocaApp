@@ -56,11 +56,25 @@ struct AddVocaListView: View {
                         Button("First") {
                             print("Pressed")
                         }
-
-                        Spacer()
-
                         Button("Second") {
                             print("Pressed")
+                        }
+                        Spacer()
+                        Button {
+                            viewStore.send(.scanButtontapped)
+                        } label: {
+                            HStack {
+                                Image(systemName: "doc.text.viewfinder")
+                                    .renderingMode(.template)
+                                    .foregroundColor(.white)
+                                
+                                Text("Scan")
+                                    .foregroundColor(.white)
+                            }
+                            .padding(.horizontal, 16)
+                            .frame(height: 36)
+                            .background(Color(UIColor.systemIndigo))
+                            .cornerRadius(18)
                         }
                     }
                 }
@@ -70,6 +84,33 @@ struct AddVocaListView: View {
                 self.store.scope(state: \.alert),
                 dismiss: .alertDismissed
             )
+            .sheet(
+                isPresented: viewStore.binding(
+                    get: \.isScannerPresented,
+                    send: AddVocaListAction.setSheet(isPresented:)
+                )
+            ) {
+                ScannerView { result in
+                    switch result {
+                        case .success(let textRecognition):
+    //                        TextRecognition(scannedImages: scannedImages,
+    //                                        recognizedContent: recognizedContent) {
+    //                            // Text recognition is finished, hide the progress indicator.
+    //                            isRecognizing = false
+    //                        }
+    //                        .recognizeText()
+                        viewStore.send(.scanCompleted(.success(textRecognition)))
+
+
+                        case .failure(let error):
+                        viewStore.send(.scanCompleted(.failure(error)))
+                    }
+                    viewStore.send(.setSheet(isPresented: false))
+
+                } didCancelScanning: {
+                    viewStore.send(.setSheet(isPresented: false))
+                }
+            }
         }
     }
     
