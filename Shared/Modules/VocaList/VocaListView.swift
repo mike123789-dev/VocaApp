@@ -112,6 +112,15 @@ struct VocaListView: View {
                     NewGroupView(store: store)
                 }
             )
+            IfLetStore(
+                self.store.scope(
+                    state: \.searchedVocaGroup.modifyVoca,
+                    action: { VocaListAction.searchVocaGroup(.modifyVoca($0)) }
+                ),
+                then: { store in
+                    ModifyVocaView(store: store)
+                }
+            )
         }
         .environment(
             \.editMode,

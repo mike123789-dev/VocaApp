@@ -57,7 +57,7 @@ struct VocaGroupSectionView: View {
             },
             footer: HStack {
                 Spacer()
-                Text("count : \(viewStore.count)")
+                Text("\(viewStore.count) 단어")
                 Spacer()
             },
             content: {
@@ -128,7 +128,7 @@ struct SimpleGroupSectionView: View {
             header: EmptyView(),
             footer: HStack {
                 Spacer()
-                Text("count : \(viewStore.count)")
+                Text("\(viewStore.count) 단어")
                 Spacer()
             },
             content: {

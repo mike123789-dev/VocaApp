@@ -176,6 +176,13 @@ let vocaListReducer = Reducer<VocaListState, VocaListAction, VocaListEnvironment
             state.addVocaList = nil
             return .none
             
+        case let .searchVocaGroup(.voca(id: id, action: action)):
+            guard let selectedGroup = state.groups.first(where: { $0.items.contains(where: { $0.id == id })}),
+                  let selectedVoca = selectedGroup.items[id: id] else { return .none }
+            print(selectedGroup.id)
+            print(selectedVoca.id)
+            return .none
+            
         case let .group(id: id, action: action):
             switch action {
             case .addVocaButtonTapped:
