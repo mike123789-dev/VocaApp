@@ -9,7 +9,7 @@ import SwiftUI
 import VisionKit
 
 struct ScannerView: UIViewControllerRepresentable {
-    var didFinishScanning: ((_ result: Result<TextRecognition, NSError>) -> Void)
+    var didFinishScanning: ((_ result: Result<[UIImage], NSError>) -> Void)
     var didCancelScanning: () -> Void
     
     func makeUIViewController(context: Context) -> VNDocumentCameraViewController {
@@ -37,15 +37,13 @@ struct ScannerView: UIViewControllerRepresentable {
         // MARK: - VNDocumentCameraViewControllerDelegate
         
         func documentCameraViewController(_ controller: VNDocumentCameraViewController, didFinishWith scan: VNDocumentCameraScan) {
-            var scannedImages = [UIImage]()
+            var scannedPages = [UIImage]()
             
             for i in 0..<scan.pageCount {
-                scannedImages.append(scan.imageOfPage(at: i))
+                scannedPages.append(scan.imageOfPage(at: i))
             }
             
-            let textRecognition = TextRecognition(scannedImages: scannedImages)
-            
-            scannerView.didFinishScanning(.success(textRecognition))
+            scannerView.didFinishScanning(.success(scannedPages))
         }
         
         
