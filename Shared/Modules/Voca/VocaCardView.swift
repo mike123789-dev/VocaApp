@@ -37,7 +37,9 @@ struct VocaCardView: View {
                         Image(systemName: viewStore.isFavorite ? "star.fill" : "star")
                             .foregroundColor(Color.yellow)
                             .padding(6)
-                    }),
+                            .padding(.trailing, 4)
+                    }
+                ),
                 alignment: .topTrailing
             )
             .onTapGesture {
@@ -58,7 +60,9 @@ struct VocaCardView_Previews: PreviewProvider {
         HStack {
             Spacer()
             VocaCardView(store: .init(initialState: .sample, reducer: vocaReducer, environment: .init(mainQueue: .main)))
+                .frame(width: 300, height: 300, alignment: .center)
             Spacer()
         }
+        .background(Color.gray)
     }
 }

@@ -23,9 +23,10 @@ struct VocaRowView: View {
                     }
                 }
                 if viewStore.isFavorite {
-                    Image(systemName: "star")
-                        .scaleEffect(0.4)
-                        .offset(x: -20, y: 0)
+                    Image(systemName: "star.fill")
+                        .foregroundColor(.yellow)
+                        .scaleEffect(0.5)
+                        .offset(x: -18, y: 0)
                 }
             }
             .contentShape(Rectangle())
