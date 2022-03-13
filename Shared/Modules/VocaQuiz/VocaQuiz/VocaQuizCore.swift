@@ -15,7 +15,7 @@ struct VocaQuizState: Equatable {
     
     var currentIndex = 0
     var currentVoca: Voca?
-    var originalVocas: [Voca]
+    var group: VocaGroup
     var remainingVocas: [Voca]
     var rightVocas: [Voca] = []
     var wrongVocas: [Voca] = []
@@ -48,16 +48,15 @@ struct VocaQuizState: Equatable {
     init(group: VocaGroup) {
         self.title = group.title
         self.totalCount = group.items.count
-        self.originalVocas = group.items.elements
+        self.group = group
         self.remainingVocas = group.items.elements
         self.currentVoca = group.items.elements.first
     }
     
     mutating func restart() {
-        self.totalCount = originalVocas.count
-        self.remainingVocas = originalVocas
-        self.remainingVocas = originalVocas
-        self.currentVoca = originalVocas.first
+        self.totalCount = group.items.count
+        self.remainingVocas = group.items.elements
+        self.currentVoca = group.items.elements.first
         self.rightVocas = []
         self.wrongVocas = []
     }
@@ -77,6 +76,7 @@ enum VocaQuizAction: BindableAction, Equatable {
     case willSwipe(direction: SwipeDirection)
     case swipe(_ voca: Voca, direction: SwipeDirection)
     case didTapResetButton
+    case didTapFinishButton
     case binding(BindingAction<VocaQuizState>)
 }
 
@@ -107,11 +107,24 @@ let vocaQuizReducer = Reducer<VocaQuizState, VocaQuizAction, VocaQuizEnvironment
             state.rightVocas.append(voca)
         }
         return .none
-    
         
     case .didTapResetButton:
         state.restart()
         return .none
+        
+    case .didTapFinishButton:
+        state.wrongVocas.forEach { voca in
+            var temp = voca
+            temp.wrongCount += 1
+            state.group.items.updateOrAppend(temp)
+        }
+        state.rightVocas.forEach { voca in
+            var temp = voca
+            temp.correctCount += 1
+            state.group.items.updateOrAppend(temp)
+        }
+        return .none
+
         
     default:
         return .none

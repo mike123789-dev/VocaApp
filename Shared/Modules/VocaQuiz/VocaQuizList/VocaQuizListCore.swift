@@ -41,7 +41,14 @@ enum VocaQuizListAction: Equatable {
 
 // MARK: - Environment
 struct VocaQuizListEnvironment {
-    // var mainQueue: AnySchedulerOf<DispatchQueue>
+    var fileClient: FileClient
+    var mainQueue: AnySchedulerOf<DispatchQueue>
+    var backgroundQueue: AnySchedulerOf<DispatchQueue>
+    var uuid: () -> UUID
+}
+
+extension VocaQuizListEnvironment {
+    static let live = Self(fileClient: .live, mainQueue: .main, backgroundQueue: .immediate, uuid: { .init() })
 }
 
 // MARK: - Reducer
@@ -60,8 +67,17 @@ let vocaQuizListReducer =
     )
     .combined(with: Reducer<VocaQuizListState, VocaQuizListAction, VocaQuizListEnvironment> { state, action, environment in
         switch action {
-        case .quiz:
-            return .none
+        case .quiz(.didTapFinishButton):
+            guard let group = state.selection?.group else { return .none }
+            state.groups.updateOrAppend(group)
+            
+            return .merge(
+                .init(value: .setNavigation(selection: .none)),
+                environment.fileClient
+                   .saveVocaList(vocaList: .init(groups: state.groups.elements), on: environment.backgroundQueue)
+                   .receive(on: environment.mainQueue)
+                   .fireAndForget()
+            )
             
         case let .setNavigation(selection: .some(id)):
             guard let selectedGroup = state.groups[id: id] else { return .none }
@@ -82,6 +98,8 @@ let vocaQuizListReducer =
             state.alert = nil
             return .none
             
+        default:
+            return .none
         }
     }
 )

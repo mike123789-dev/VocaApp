@@ -16,15 +16,16 @@ struct Voca: Equatable, Identifiable, Codable, Hashable {
     var isFavorite = false
     var isShowingMeaning = false // 얘는 따로 빼놔야하나?
     var isSheetPresented = false // 얘는 따로 빼놔야하나?
-    private var correctCount = 0
-    private var wrongCount = 0
+    var correctCount = 0
+    var wrongCount = 0
     
     var totalCount: Int {
         correctCount + wrongCount
     }
     
-    var correctAnswerRate: Double {
-        Double(correctCount)/Double(totalCount)
+    var correctAnswerRate: Double? {
+        guard totalCount != 0 else { return nil }
+        return Double(correctCount)/Double(totalCount)
     }
         
     mutating func answerWrong() {
@@ -34,6 +35,25 @@ struct Voca: Equatable, Identifiable, Codable, Hashable {
         correctCount += 1
     }
 
+}
+
+extension Voca {
+    var opacity: Double {
+        guard let correctAnswerRate = correctAnswerRate else  { return 0.0 }
+        if 0.95 < correctAnswerRate {
+            return 0.0
+        } else if 0.8..<0.95 ~= correctAnswerRate {
+            return 0.1
+        } else if 0.6..<0.8 ~= correctAnswerRate {
+            return 0.25
+        } else if 0.4..<0.6 ~= correctAnswerRate {
+            return 0.4
+        } else if 0.2..<0.4 ~= correctAnswerRate {
+            return 0.6
+        } else {
+            return 0.8
+        }
+    }
 }
 
 extension Voca {
@@ -82,7 +102,6 @@ struct VocaEnvironment {
 let vocaReducer = Reducer<Voca, VocaAction, VocaEnvironment> { state, action, environment in
     switch action {
     case .tapped:
-        //TODO: 1초후에 뜻 다시 뜻 숨기기
         state.isShowingMeaning.toggle()
         if state.isShowingMeaning {
             return Effect(value: .stopShowingMeaning)

@@ -74,7 +74,7 @@ struct VocaQuizListView: View {
 
 struct VocaQuizView_Previews: PreviewProvider {
     static var previews: some View {
-        VocaQuizListView(store: .init(initialState: .init(groups: [.test1]), reducer: vocaQuizListReducer, environment: .init()))
+        VocaQuizListView(store: .init(initialState: .init(groups: [.test1]), reducer: vocaQuizListReducer, environment: .live))
     }
 }
 

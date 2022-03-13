@@ -47,8 +47,16 @@ struct VocaRowView: View {
                 }
             }))
             .if(viewStore.isShowingMeaning, transform: { view in
-                view.listRowBackground(Color.yellow.opacity(0.2))
-                    .transition(.opacity)
+                withAnimation {
+                    view.listRowBackground(Color.yellow.opacity(0.2))
+                        .animation(.default, value: viewStore.isShowingMeaning)
+                }
+            })
+            .if(viewStore.opacity > 0.0, transform: { view in
+                withAnimation {
+                    view.listRowBackground(Color.red.opacity(viewStore.opacity))
+                        .animation(.default, value: viewStore.isShowingMeaning)
+                }
             })
             .swipeActions(edge: .leading, allowsFullSwipe: true) {
                 Button {
@@ -84,6 +92,8 @@ struct VocaItemView_Previews: PreviewProvider {
                 VocaRowView(store: .init(initialState: .sample, reducer: vocaReducer, environment: .init(mainQueue: .main)))
                 VocaRowView(store: .init(initialState: .favorite, reducer: vocaReducer, environment: .init(mainQueue: .main)))
                 VocaRowView(store: .init(initialState: .highlighted, reducer: vocaReducer, environment: .init(mainQueue: .main)))
+                VocaRowView(store: .init(initialState: .sample, reducer: vocaReducer, environment: .init(mainQueue: .main)))
+                
             }
         }
         .listStyle(InsetGroupedListStyle())

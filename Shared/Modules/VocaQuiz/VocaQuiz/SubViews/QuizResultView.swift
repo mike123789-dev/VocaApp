@@ -41,6 +41,15 @@ struct QuizResultView: View {
                 }
                 .buttonStyle(BorderedButtonStyle())
                 .controlSize(.large)
+                Button {
+                    viewStore.send(.didTapFinishButton, animation: .spring())
+                } label: {
+                    Text("완료")
+                        .frame(maxWidth: 200)
+                }
+                .buttonStyle(BorderedButtonStyle())
+                .controlSize(.large)
+
             }
             .padding()
         }

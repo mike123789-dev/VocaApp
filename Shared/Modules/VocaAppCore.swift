@@ -56,7 +56,7 @@ let vocaAppReducer = Reducer<VocaAppState, VocaAppAction, VocaAppCoreEnvironment
         .pullback(
             state: \.vocaQuizList,
             action: /VocaAppAction.vocaQuizList,
-            environment: { _ in .init() }
+            environment: { .init(fileClient: $0.fileClient, mainQueue: $0.mainQueue, backgroundQueue: $0.backgroundQueue, uuid: $0.uuid) }
         ),
     Reducer { state, action, environment in
         switch action {
