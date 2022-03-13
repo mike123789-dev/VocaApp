@@ -8,12 +8,19 @@
 
 import ComposableArchitecture
 
+enum AppTab {
+    case list, quiz
+}
+
 // MARK: - State
 struct VocaAppState: Equatable {
     
-    var isFetching: Bool = true
+    var tab: AppTab = .list
+    
     var vocaList: VocaListState = .init(groups: [])
     var vocaQuizList: VocaQuizListState = .init(groups: [])
+    
+    var isFetching: Bool = true
     
     init() {
     }
@@ -23,6 +30,7 @@ struct VocaAppState: Equatable {
 // MARK: - Action
 enum VocaAppAction: Equatable {
     case viewAppeared
+    case tabSelected(AppTab)
     case vocaListLoaded(Result<VocaList, NSError>)
     case vocaList(VocaListAction)
     case vocaQuizList(VocaQuizListAction)
@@ -61,6 +69,25 @@ let vocaAppReducer = Reducer<VocaAppState, VocaAppAction, VocaAppCoreEnvironment
             guard let list = try? list.get() else { return .none }
             state.vocaList = .init(list: list)
             state.vocaQuizList = .init(list: list)
+            return .none
+            
+        case let .tabSelected(tab):
+            print("🔨 tabSelected : \(tab)")
+            // 메모리에 있는 단어 정보 가져오기
+            switch tab {
+            case .list:
+                if state.tab == .quiz {
+                    state.vocaList.groups = state.vocaQuizList.groups
+                    state.tab = tab
+                }
+                break
+            case .quiz:
+                if state.tab == .list {
+                    state.vocaQuizList.groups = state.vocaList.groups
+                    state.tab = tab
+                }
+                break
+            }
             return .none
             
         default:

@@ -86,7 +86,7 @@ let vocaReducer = Reducer<Voca, VocaAction, VocaEnvironment> { state, action, en
         state.isShowingMeaning.toggle()
         if state.isShowingMeaning {
             return Effect(value: .stopShowingMeaning)
-                .debounce(id: state.id, for: 1.5, scheduler: environment.mainQueue.animation())
+                .debounce(id: state.id, for: 1.5, scheduler: environment.mainQueue)
         } else {
             return .none
         }

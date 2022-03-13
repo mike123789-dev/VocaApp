@@ -13,6 +13,7 @@ struct AddVocaListState: Equatable {
     var groups: [VocaGroup]
     var currentGroup: VocaGroup
     var addVocas: IdentifiedArrayOf<AddVocaItemState>
+    var isScannerPresented = false
     var alert: AlertState<AddVocaListAction>?
 
     var isAllValidate: Bool {
@@ -38,6 +39,9 @@ enum AddVocaListAction: Equatable {
     case delete(IndexSet)
     case addButtonTapped
     case confirmButtonTapped
+    case scanButtontapped
+    case scanCompleted(Result<TextRecognition, NSError>)
+    case setSheet(isPresented: Bool)
     case alertDismissed
 }
 
@@ -78,6 +82,18 @@ let addVocaListReducer = Reducer<AddVocaListState, AddVocaListAction, AddVocaLis
             }
             return .none
             
+        case .scanButtontapped:
+            state.isScannerPresented = true
+            return .none
+            
+        case .setSheet(isPresented: false):
+            state.isScannerPresented = false
+            return .none
+            
+        case let .scanCompleted(.success(recognition)):
+            print(recognition.scannedImages.count)
+            return .none
+            
         case .alertDismissed:
             state.alert = nil
             if let index = state.addVocas.firstIndex(where: { !$0.isValid }) {
@@ -86,6 +102,8 @@ let addVocaListReducer = Reducer<AddVocaListState, AddVocaListAction, AddVocaLis
             // scroll 해주기
             return .none
 
+        default:
+            return .none
         }
     }
 )

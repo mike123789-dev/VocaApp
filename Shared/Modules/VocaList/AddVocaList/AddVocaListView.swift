@@ -53,15 +53,15 @@ struct AddVocaListView: View {
 
                 ToolbarItemGroup(placement: .bottomBar) {
                     HStack {
-                        Button("First") {
-                            print("Pressed")
-                        }
-
                         Spacer()
-
-                        Button("Second") {
-                            print("Pressed")
+                        Button {
+                            viewStore.send(.scanButtontapped)
+                        } label: {
+                            Label("Scan", systemImage: "doc.text.viewfinder")
                         }
+                        .tint(.blue)
+                        .buttonStyle(.bordered)
+                        .buttonBorderShape(.capsule)
                     }
                 }
             }
@@ -70,6 +70,27 @@ struct AddVocaListView: View {
                 self.store.scope(state: \.alert),
                 dismiss: .alertDismissed
             )
+            .sheet(
+                isPresented: viewStore.binding(
+                    get: \.isScannerPresented,
+                    send: AddVocaListAction.setSheet(isPresented:)
+                )
+            ) {
+                ScannerView { result in
+                    switch result {
+                        case .success(let images):
+                        let recognition = TextRecognition(scannedImages: images)
+                        viewStore.send(.scanCompleted(.success(recognition)))
+
+                        case .failure(let error):
+                        viewStore.send(.scanCompleted(.failure(error)))
+                    }
+                    viewStore.send(.setSheet(isPresented: false))
+
+                } didCancelScanning: {
+                    viewStore.send(.setSheet(isPresented: false))
+                }
+            }
         }
     }
     

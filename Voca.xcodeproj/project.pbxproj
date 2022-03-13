@@ -91,6 +91,10 @@
 		CEC71DEF2780806C00955E69 /* QuizResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC71DED2780806C00955E69 /* QuizResultView.swift */; };
 		CEDA1C8D27A6628C001EDB96 /* ModifyVocaCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDA1C8C27A6628C001EDB96 /* ModifyVocaCore.swift */; };
 		CEDA1C8E27A6628C001EDB96 /* ModifyVocaCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDA1C8C27A6628C001EDB96 /* ModifyVocaCore.swift */; };
+		CEDA1C9227A9680B001EDB96 /* ScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDA1C9127A9680B001EDB96 /* ScannerView.swift */; };
+		CEDA1C9327A9680B001EDB96 /* ScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDA1C9127A9680B001EDB96 /* ScannerView.swift */; };
+		CEDA1C9527A96BFA001EDB96 /* TextRecognition.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDA1C9427A96BFA001EDB96 /* TextRecognition.swift */; };
+		CEDA1C9627A96BFA001EDB96 /* TextRecognition.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDA1C9427A96BFA001EDB96 /* TextRecognition.swift */; };
 		CEDA1C9827AACBA1001EDB96 /* HalfSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDA1C9727AACBA1001EDB96 /* HalfSheet.swift */; };
 		CEDA1C9927AACBA1001EDB96 /* HalfSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDA1C9727AACBA1001EDB96 /* HalfSheet.swift */; };
 		CEF80DEC26F762A7004F259C /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF80DEB26F762A7004F259C /* CardView.swift */; };
@@ -193,6 +197,8 @@
 		CEC71DEA27807F3B00955E69 /* QuizFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizFooter.swift; sourceTree = "<group>"; };
 		CEC71DED2780806C00955E69 /* QuizResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizResultView.swift; sourceTree = "<group>"; };
 		CEDA1C8C27A6628C001EDB96 /* ModifyVocaCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyVocaCore.swift; sourceTree = "<group>"; };
+		CEDA1C9127A9680B001EDB96 /* ScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerView.swift; sourceTree = "<group>"; };
+		CEDA1C9427A96BFA001EDB96 /* TextRecognition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextRecognition.swift; sourceTree = "<group>"; };
 		CEDA1C9727AACBA1001EDB96 /* HalfSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfSheet.swift; sourceTree = "<group>"; };
 		CEF80DEB26F762A7004F259C /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		CEF80DEE26F764B2004F259C /* ContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerView.swift; sourceTree = "<group>"; };
@@ -295,6 +301,7 @@
 			children = (
 				512CF310276E18C700706071 /* AddVocaModel.swift */,
 				CE6DF29E277881F10034B2BE /* VocaList.swift */,
+				CEDA1C9427A96BFA001EDB96 /* TextRecognition.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -305,6 +312,7 @@
 				512CF307276C3AC300706071 /* AddVocaItem */,
 				512CF324276EB7CD00706071 /* AddVocaListCore.swift */,
 				CEF80DF126F764E1004F259C /* AddVocaListView.swift */,
+				CEDA1C9127A9680B001EDB96 /* ScannerView.swift */,
 			);
 			path = AddVocaList;
 			sourceTree = "<group>";
@@ -768,6 +776,7 @@
 				51554D7426F381B10030BB2D /* VocaQuizListView.swift in Sources */,
 				CE6DF297277681FA0034B2BE /* SimpleFocusView.swift in Sources */,
 				CEC71DD82780045400955E69 /* PartialSheet.swift in Sources */,
+				CEDA1C9227A9680B001EDB96 /* ScannerView.swift in Sources */,
 				512CF2F1276B839F00706071 /* VocaListCore.swift in Sources */,
 				CEF80DF526F76C7C004F259C /* VocaQuizView.swift in Sources */,
 				512CF317276E1BD100706071 /* VocaGroupItemView.swift in Sources */,
@@ -779,6 +788,7 @@
 				CEC71DE527807F0C00955E69 /* CardStackView.swift in Sources */,
 				CEDA1C9827AACBA1001EDB96 /* HalfSheet.swift in Sources */,
 				512CF325276EB7CD00706071 /* AddVocaListCore.swift in Sources */,
+				CEDA1C9527A96BFA001EDB96 /* TextRecognition.swift in Sources */,
 				CEC71DE127806F4400955E69 /* CornerRadius.swift in Sources */,
 				512CF30D276C4C6900706071 /* SwipableCardView.swift in Sources */,
 				CE6DF2AD277883D10034B2BE /* FileClient.swift in Sources */,
@@ -810,6 +820,7 @@
 				512CF2FE276B91AD00706071 /* VocaGroupSectionView.swift in Sources */,
 				51554D7226F380BA0030BB2D /* VocaAppView.swift in Sources */,
 				CE6DF29B2776C8F30034B2BE /* VocaAppCore.swift in Sources */,
+				CEDA1C9327A9680B001EDB96 /* ScannerView.swift in Sources */,
 				512CF312276E18C700706071 /* AddVocaModel.swift in Sources */,
 				CEF80DF026F764B2004F259C /* ContainerView.swift in Sources */,
 				512CF2F8276B842200706071 /* VocaCore.swift in Sources */,
@@ -824,6 +835,7 @@
 				512CF318276E1BD100706071 /* VocaGroupItemView.swift in Sources */,
 				CE6DF2C027789B8C0034B2BE /* NewGroupView.swift in Sources */,
 				CE6DF2B427788AC80034B2BE /* FileClientEffects.swift in Sources */,
+				CEDA1C9627A96BFA001EDB96 /* TextRecognition.swift in Sources */,
 				CEB46174278935AB0091E2A2 /* ErrorBadge.swift in Sources */,
 				CEF80DFE26F7721A004F259C /* VocaRowView.swift in Sources */,
 				CEDA1C8E27A6628C001EDB96 /* ModifyVocaCore.swift in Sources */,
