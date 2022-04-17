@@ -85,7 +85,7 @@ let vocaListReducer = Reducer<VocaListState, VocaListAction, VocaListEnvironment
         .pullback(
             state: \.addVocaList,
             action: /VocaListAction.addVocaList,
-            environment: { .init(uuid: $0.uuid) }
+            environment: { .init(uuid: $0.uuid, mainQueue: $0.mainQueue, backgroundQueue: $0.backgroundQueue) }
         ),
     Reducer { state, action, environment in
         switch action {

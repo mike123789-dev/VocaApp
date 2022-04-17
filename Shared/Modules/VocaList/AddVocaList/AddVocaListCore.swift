@@ -7,6 +7,17 @@
 //
 
 import ComposableArchitecture
+import Vision
+
+struct TextItem: Identifiable, Equatable {
+    var id: UUID
+    var text: String = ""
+    
+    init(text: String) {
+        id = UUID()
+        self.text = text
+    }
+}
 
 // MARK: - State
 struct AddVocaListState: Equatable {
@@ -15,6 +26,7 @@ struct AddVocaListState: Equatable {
     var addVocas: IdentifiedArrayOf<AddVocaItemState>
     var isScannerPresented = false
     var alert: AlertState<AddVocaListAction>?
+    var recognizedTexts: [TextItem] = []
 
     var isAllValidate: Bool {
         return addVocas.map{ $0.isValid }.allSatisfy({$0})
@@ -43,11 +55,15 @@ enum AddVocaListAction: Equatable {
     case scanCompleted(Result<TextRecognition, NSError>)
     case setSheet(isPresented: Bool)
     case alertDismissed
+    case textRecognitionResponse(Result<[TextItem], NSError>)
 }
 
 // MARK: - Environment
 struct AddVocaListEnvironment {
     var uuid: () -> UUID
+    var mainQueue: AnySchedulerOf<DispatchQueue>
+    var backgroundQueue: AnySchedulerOf<DispatchQueue>
+    var visionClient = VisionClient.live
 }
 
 // MARK: - Reducer
@@ -92,14 +108,30 @@ let addVocaListReducer = Reducer<AddVocaListState, AddVocaListAction, AddVocaLis
             
         case let .scanCompleted(.success(recognition)):
             print(recognition.scannedImages.count)
-            return .none
-            
+            return environment.visionClient
+                .recognizeText(recognition.scannedImages)
+                .subscribe(on: environment.backgroundQueue)
+                .receive(on: environment.mainQueue.animation())
+                .catchToEffect()
+                .map(AddVocaListAction.textRecognitionResponse)
+
         case .alertDismissed:
             state.alert = nil
             if let index = state.addVocas.firstIndex(where: { !$0.isValid }) {
                 print("😢 비어있는 index: \(index)")
             }
-            // scroll 해주기
+            // TODO: scroll 해주기
+            return .none
+            
+        case let .textRecognitionResponse(.success(textItems)):
+            if let firstVoca = state.addVocas.first?.addVoca,
+               firstVoca.meaning.isEmpty && firstVoca.word.isEmpty {
+                state.addVocas.removeFirst()
+            }
+            for textItem in textItems {
+                let newVoca = AddVocaItemState(id: textItem.id, voca: .init(id: textItem.id, word: textItem.text, meaning: ""))
+                state.addVocas.append(newVoca)
+            }
             return .none
 
         default:
