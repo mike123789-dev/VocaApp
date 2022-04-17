@@ -9,6 +9,8 @@ import SwiftUI
 import ComposableArchitecture
 
 struct CardStackView: View {
+    @State private var position = FacePosition.middle
+
     @ObservedObject var viewStore: ViewStore<VocaQuizState, VocaQuizAction>
     let geometry: GeometryProxy
     
@@ -22,6 +24,9 @@ struct CardStackView: View {
 
     var body: some View {
         ZStack {
+            FaceDetectionView { position in
+                self.position = position
+            }
             ForEach(Array(viewStore.visableVocas.enumerated()), id: \.element.self) { (index, voca) in
                 SwipableCardView(
                     content: {
@@ -37,6 +42,14 @@ struct CardStackView: View {
                 )
                 .offset(x: 0, y: self.getCardOffset(index: index))
                 .transition(.scale.combined(with: .opacity))
+            }
+        }
+        .onChange(of: self.position) { newValue in
+            guard let voca = viewStore.currentVoca else { return }
+            if position == .left {
+                viewStore.send(.swipe(voca, direction: .left))
+            } else if position == .right {
+                viewStore.send(.swipe(voca, direction: .right))
             }
         }
 

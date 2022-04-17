@@ -27,7 +27,7 @@ struct SwipableCardView<Content: View>: View {
     @State private var translation: CGSize = .zero
     @Binding var willSwipeRight: Bool
     @Binding var willSwipeLeft: Bool
-    private var thresholdPercentage: CGFloat = 0.3 // when the user has draged 50% the width of the screen in either direction
+    private var thresholdPercentage: CGFloat = 0.3
     var didSwipeRight: (() -> Void)?
     var didSwipeLeft: (() -> Void)?
     

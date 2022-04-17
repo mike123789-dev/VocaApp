@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D426738280A9072009C37D6 /* FaceDetectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D426737280A9072009C37D6 /* FaceDetectionView.swift */; };
+		3D426739280A9072009C37D6 /* FaceDetectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D426737280A9072009C37D6 /* FaceDetectionView.swift */; };
+		3D42673B280A98B7009C37D6 /* FaceDetectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D42673A280A98B7009C37D6 /* FaceDetectionViewController.swift */; };
+		3D42673C280A98B7009C37D6 /* FaceDetectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D42673A280A98B7009C37D6 /* FaceDetectionViewController.swift */; };
+		3D42673F280C1DD8009C37D6 /* VisionClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D42673E280C1DD8009C37D6 /* VisionClient.swift */; };
+		3D426740280C1DD8009C37D6 /* VisionClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D42673E280C1DD8009C37D6 /* VisionClient.swift */; };
+		3DB17987280961CF0005041D /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 3DB17986280961CF0005041D /* ComposableArchitecture */; };
+		3DB17989280963670005041D /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB17988280963670005041D /* ImagePicker.swift */; };
+		3DB1798A280963670005041D /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB17988280963670005041D /* ImagePicker.swift */; };
 		512CF2F1276B839F00706071 /* VocaListCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512CF2F0276B839F00706071 /* VocaListCore.swift */; };
 		512CF2F2276B839F00706071 /* VocaListCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512CF2F0276B839F00706071 /* VocaListCore.swift */; };
 		512CF2F5276B83E600706071 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 512CF2F4276B83E600706071 /* ComposableArchitecture */; };
@@ -143,6 +152,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3D426737280A9072009C37D6 /* FaceDetectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceDetectionView.swift; sourceTree = "<group>"; };
+		3D42673A280A98B7009C37D6 /* FaceDetectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FaceDetectionViewController.swift; sourceTree = "<group>"; };
+		3D42673E280C1DD8009C37D6 /* VisionClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionClient.swift; sourceTree = "<group>"; };
+		3DB17988280963670005041D /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		512CF2F0276B839F00706071 /* VocaListCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocaListCore.swift; sourceTree = "<group>"; };
 		512CF2F6276B842200706071 /* VocaCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocaCore.swift; sourceTree = "<group>"; };
 		512CF2F9276B8FB100706071 /* VocaGroupCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocaGroupCore.swift; sourceTree = "<group>"; };
@@ -221,6 +234,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3DB17987280961CF0005041D /* ComposableArchitecture in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -255,6 +269,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3D42673D280C1DC1009C37D6 /* VisionClient */ = {
+			isa = PBXGroup;
+			children = (
+				3D42673E280C1DD8009C37D6 /* VisionClient.swift */,
+			);
+			path = VisionClient;
+			sourceTree = "<group>";
+		};
+		3DB17985280961CF0005041D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		512CF305276C3A3A00706071 /* Voca */ = {
 			isa = PBXGroup;
 			children = (
@@ -313,6 +342,7 @@
 				512CF324276EB7CD00706071 /* AddVocaListCore.swift */,
 				CEF80DF126F764E1004F259C /* AddVocaListView.swift */,
 				CEDA1C9127A9680B001EDB96 /* ScannerView.swift */,
+				3DB17988280963670005041D /* ImagePicker.swift */,
 			);
 			path = AddVocaList;
 			sourceTree = "<group>";
@@ -337,6 +367,7 @@
 				CEC6B3E1278927F900CC93C2 /* VocaQuizTests */,
 				CEB4617A2789522F0091E2A2 /* VocaListTests */,
 				51554D3B26F37DAF0030BB2D /* Products */,
+				3DB17985280961CF0005041D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -344,6 +375,8 @@
 			isa = PBXGroup;
 			children = (
 				51554D3326F37DAD0030BB2D /* VocaApp.swift */,
+				3D426737280A9072009C37D6 /* FaceDetectionView.swift */,
+				3D42673A280A98B7009C37D6 /* FaceDetectionViewController.swift */,
 				CEADEC7D277F30560010F49A /* Modules */,
 				CE6DF2AB277883C90034B2BE /* Clients */,
 				512CF30F276E18B300706071 /* Models */,
@@ -415,6 +448,7 @@
 		CE6DF2AB277883C90034B2BE /* Clients */ = {
 			isa = PBXGroup;
 			children = (
+				3D42673D280C1DC1009C37D6 /* VisionClient */,
 				CEADEC80277F30F30010F49A /* FileClient */,
 			);
 			path = Clients;
@@ -568,6 +602,9 @@
 			dependencies = (
 			);
 			name = "Voca (macOS)";
+			packageProductDependencies = (
+				3DB17986280961CF0005041D /* ComposableArchitecture */,
+			);
 			productName = "Voca (macOS)";
 			productReference = 51554D4226F37DAF0030BB2D /* Voca.app */;
 			productType = "com.apple.product-type.application";
@@ -772,6 +809,7 @@
 				512CF2F7276B842200706071 /* VocaCore.swift in Sources */,
 				CEC71DEE2780806C00955E69 /* QuizResultView.swift in Sources */,
 				CEF80DF226F764E1004F259C /* AddVocaListView.swift in Sources */,
+				3DB17989280963670005041D /* ImagePicker.swift in Sources */,
 				512CF314276E1A6700706071 /* VocaQuizListCore.swift in Sources */,
 				51554D7426F381B10030BB2D /* VocaQuizListView.swift in Sources */,
 				CE6DF297277681FA0034B2BE /* SimpleFocusView.swift in Sources */,
@@ -782,6 +820,7 @@
 				512CF317276E1BD100706071 /* VocaGroupItemView.swift in Sources */,
 				CE6DF2BF27789B8C0034B2BE /* NewGroupView.swift in Sources */,
 				CEF80DFD26F7721A004F259C /* VocaRowView.swift in Sources */,
+				3D42673F280C1DD8009C37D6 /* VisionClient.swift in Sources */,
 				CE6DF2BC27789B790034B2BE /* NewGroupCore.swift in Sources */,
 				CEDA1C8D27A6628C001EDB96 /* ModifyVocaCore.swift in Sources */,
 				512CF31A276E209B00706071 /* VocaQuizCore.swift in Sources */,
@@ -797,12 +836,14 @@
 				CE6DF29A2776C8F30034B2BE /* VocaAppCore.swift in Sources */,
 				51554D5C26F37DAF0030BB2D /* VocaApp.swift in Sources */,
 				512CF30A276C3EC400706071 /* VocaCardView.swift in Sources */,
+				3D426738280A9072009C37D6 /* FaceDetectionView.swift in Sources */,
 				CEF80DEC26F762A7004F259C /* CardView.swift in Sources */,
 				CE6DF2A3277882350034B2BE /* URL+.swift in Sources */,
 				CE08300D277211D900252BCE /* If.swift in Sources */,
 				512CF2FA276B8FB100706071 /* VocaGroupCore.swift in Sources */,
 				CEF80DFA26F76CCF004F259C /* VocaQuizItemView.swift in Sources */,
 				512CF31D276EA6F800706071 /* AddVocaItemView.swift in Sources */,
+				3D42673B280A98B7009C37D6 /* FaceDetectionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -823,6 +864,7 @@
 				CEDA1C9327A9680B001EDB96 /* ScannerView.swift in Sources */,
 				512CF312276E18C700706071 /* AddVocaModel.swift in Sources */,
 				CEF80DF026F764B2004F259C /* ContainerView.swift in Sources */,
+				3D426739280A9072009C37D6 /* FaceDetectionView.swift in Sources */,
 				512CF2F8276B842200706071 /* VocaCore.swift in Sources */,
 				CEF80DF326F764E1004F259C /* AddVocaListView.swift in Sources */,
 				512CF315276E1A6700706071 /* VocaQuizListCore.swift in Sources */,
@@ -834,6 +876,7 @@
 				CEC71DE227806F4400955E69 /* CornerRadius.swift in Sources */,
 				512CF318276E1BD100706071 /* VocaGroupItemView.swift in Sources */,
 				CE6DF2C027789B8C0034B2BE /* NewGroupView.swift in Sources */,
+				3D426740280C1DD8009C37D6 /* VisionClient.swift in Sources */,
 				CE6DF2B427788AC80034B2BE /* FileClientEffects.swift in Sources */,
 				CEDA1C9627A96BFA001EDB96 /* TextRecognition.swift in Sources */,
 				CEB46174278935AB0091E2A2 /* ErrorBadge.swift in Sources */,
@@ -855,8 +898,10 @@
 				CEF80DED26F762A7004F259C /* CardView.swift in Sources */,
 				512CF2FB276B8FB100706071 /* VocaGroupCore.swift in Sources */,
 				CEF80DFB26F76CCF004F259C /* VocaQuizItemView.swift in Sources */,
+				3DB1798A280963670005041D /* ImagePicker.swift in Sources */,
 				CE6DF2AE277883D20034B2BE /* FileClient.swift in Sources */,
 				512CF31E276EA6F800706071 /* AddVocaItemView.swift in Sources */,
+				3D42673C280A98B7009C37D6 /* FaceDetectionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1378,6 +1423,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		3DB17986280961CF0005041D /* ComposableArchitecture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 512CF2F3276B83E600706071 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			productName = ComposableArchitecture;
+		};
 		512CF2F4276B83E600706071 /* ComposableArchitecture */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 512CF2F3276B83E600706071 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
